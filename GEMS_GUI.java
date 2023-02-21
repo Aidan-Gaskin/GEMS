@@ -361,12 +361,14 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();
+				centerPanel.revalidate();//test
 			}
 			catch(Exception e)
 			{
 				//create a pop up here?? idk yet 
 			}
+			centerPanel.revalidate();//test
+			centerPanel.repaint();//test
 		}
 	}
 	//View Account Managers Listener
@@ -526,6 +528,8 @@ public class GEMS_GUI
 				    
 
 				}
+				gems.repaint();//test
+				gems.revalidate();//test
 				
 
 				
@@ -666,6 +670,8 @@ public class GEMS_GUI
 			{
 				
 			}
+			gems.revalidate();
+			gems.repaint();
 		}
 	}
 	
