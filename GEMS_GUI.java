@@ -100,15 +100,15 @@ public class GEMS_GUI
 		private JTextField createItemBuyPrice = new JTextField("Buy Price...");
 		private JTextField createItemSellPrice = new JTextField("Sell Price....");
 		
-	//Create Entry Client 
-		private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
-		private JTextField createClientCompanyName = new JTextField("Company Name...");
-		private JTextField createClientAddress = new JTextField("Address...");
-		private JTextField createClientAccountManID = new JTextField("Account Manager ID...");
-		private JTextField createClientForename = new JTextField("Forename...");
-		private JTextField createClientSurname = new JTextField("Surname...");
-		private JTextField createClientEmail = new JTextField("Contact Email...");
-		private JTextField createClientPhoneNo = new JTextField("Contact Phone Number...");
+//	//Create Entry Client 
+//		private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
+//		private JTextField createClientCompanyName = new JTextField("Company Name...");
+//		private JTextField createClientAddress = new JTextField("Address...");
+//		private JTextField createClientAccountManID = new JTextField("Account Manager ID...");
+//		private JTextField createClientForename = new JTextField("Forename...");
+//		private JTextField createClientSurname = new JTextField("Surname...");
+//		private JTextField createClientEmail = new JTextField("Contact Email...");
+//		private JTextField createClientPhoneNo = new JTextField("Contact Phone Number...");
 	
 	//GEMS for Data Operations 
 		private GEMS y = new GEMS();
@@ -322,6 +322,9 @@ public class GEMS_GUI
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
 				
+				//removing old version if exists -- to then be added again 
+				centerSouth.remove(clientScroll);
+				
 				centerSouth.remove(createEntryOrder);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryItem);
@@ -338,7 +341,16 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();
+
+					//new additions below - @11:19
+					String[] clientHeader = {"Client ID","Company Name","Address","Account Manager ID",
+							"Contact Forename", "Contact Surname", "Email", "Phone Number"};
+					Object[][] clientData = y.retrieveSelectedTableObject("Client");
+					JTable clientTable = new JTable(clientData, clientHeader);
+					JScrollPane clientScroll = new JScrollPane(clientTable);
+					
+					centerPanel.add(clientScroll, BorderLayout.CENTER);	
+					
 				//int refresh experimental feature 
 				intRefresh = 2;
 			}
@@ -349,22 +361,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//ORIGNAL !!!!!!!
 	private class viewAdministratorsHandler implements ActionListener
@@ -666,15 +662,48 @@ public class GEMS_GUI
 	
 	
 	
-	
+	//Create Entry Client 
+	private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
+	private JTextField createClientCompanyName = new JTextField("Company Name...");
+	private JTextField createClientAddress = new JTextField("Address...");
+	private JTextField createClientAccountManID = new JTextField("Account Manager ID...");
+	private JTextField createClientForename = new JTextField("Forename...");
+	private JTextField createClientSurname = new JTextField("Surname...");
+	private JTextField createClientEmail = new JTextField("Contact Email...");
+	private JTextField createClientPhoneNo = new JTextField("Contact Phone Number...");
 	private class CreateClientButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.add(createClientEntryPopUp);
-				createClientEntryPopUp.showMessageDialog(gems, "test");
+	            gems.add(createClientEntryPopUp);
+
+	            createClientEntryPopUp.setLayout(new GridLayout(3,2));
+
+	            createClientEntryPopUp.add(createAccountForename);
+	            createClientEntryPopUp.add(createAccountSurname);
+	            createClientEntryPopUp.add(createAccountPhoneNo);
+
+	            int result = JOptionPane.showConfirmDialog(null, createClientEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	            	String companyName = createClientCompanyName.getText();
+	            	String address = createClientAddress.getText();
+	            	String accountManagerID = createClientAccountManID.getText();//not sure if will work
+	                String forename = createClientForename.getText();
+	                String surname = createClientSurname.getText();
+	                String email = createClientEmail.getText();
+	                String phoneNo = createClientPhoneNo.getText();
+
+	                y.createClientObject(companyName,address,accountManagerID,forename,surname,email,phoneNo);
+
+	                //Update the table model
+	                DefaultTableModel model = (DefaultTableModel) clientTable.getModel();
+	                model.addRow(new Object[]{forename, surname, phoneNo, this});
+	                model.fireTableDataChanged();
+	            }
 			}
 			catch(Exception e)
 			{
@@ -800,10 +829,25 @@ public class GEMS_GUI
 				case 1: System.out.println("\nCASE 1");
 				break;
 
-				case 2: System.out.println("\nCASE 2");
+				//CLIENT
+				case 2:
+					centerPanel.revalidate();
+					
+					//removing old version of the table
+					centerSouth.remove(clientScroll);
+					
+					//Refreshing the table to match the Database back-end
+					String[] clientHeader = {"Client ID","Company Name","Address","Account Manager ID",
+							"Contact Forename", "Contact Surname", "Email", "Phone Number"};
+					Object[][] clientData = y.retrieveSelectedTableObject("Client");
+					JTable clientTable = new JTable(clientData, clientHeader);
+					JScrollPane clientScroll = new JScrollPane(clientTable);					
+			
+					//Adding the table back to GUI 
+					centerPanel.add(clientScroll, BorderLayout.CENTER);	
 				break;
 				
-				//ADMINISTRATOR
+				//*****ADMINISTRATOR*****
 				case 3:
 				centerPanel.revalidate();
 				
@@ -820,7 +864,7 @@ public class GEMS_GUI
 				centerPanel.add(administratorScroll, BorderLayout.CENTER);	
 				break;
 
-				//ACCOUNT MANAGER 
+				//*****ACCOUNT MANAGER*****
 				case 4:
 				centerPanel.revalidate();
 				
