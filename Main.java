@@ -10,8 +10,7 @@ public class Main
 
 	private static GEMS gems;
 	
-	private static GEMS_GUI gui;
-
+	
 	
 	
 	
@@ -21,10 +20,7 @@ public class Main
 //		test = new ConnectDB();
 //		login = new GUI_Login();
 		
-		//gems = new GEMS();
-		
-
-		//gui = new GEMS_GUI();
+		gems = new GEMS();
 		
 		//gems.insertAdministratorObject("test", "test", "07491986267");
 		

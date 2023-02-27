@@ -292,6 +292,13 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
 	//View Clients Listener
 	private class viewClientsHandler implements ActionListener
 	{
@@ -331,7 +338,73 @@ public class GEMS_GUI
 			}
 		}
 	}
-	//View Administrators Listener
+	
+	
+	
+	
+	
+	
+
+//	private class viewAdministratorsHandler implements ActionListener
+//	{
+//	    public void actionPerformed(ActionEvent event)
+//	    {
+//	        try
+//	        {
+//	            // Fetch the new data here
+//	            Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
+//
+//	            centerPanel.revalidate();
+//	            // Remove the existing components
+//	            centerPanel.remove(clientScroll);
+//	            centerPanel.remove(itemScroll);
+//	            centerPanel.remove(accountManagerScroll);
+//	            centerPanel.remove(supplierScroll);
+//	            centerPanel.remove(orderScroll);
+//	            
+//	            centerSouth.remove(createEntryClient);
+//	            centerSouth.remove(createEntrySupplier);
+//	            centerSouth.remove(createEntryItem);
+//	            centerSouth.remove(createEntryAccountManager);
+//	            centerSouth.remove(createEntryOrder);
+//
+//	            // Create a new table model with the new data
+//	            DefaultTableModel tableModel = new DefaultTableModel(administratorData, administratorHeader);
+//	            JTable administratorTable = new JTable(tableModel);
+//
+//	            // Add the new components that will display the new data
+//	            centerPanel.add(new JScrollPane(administratorTable), BorderLayout.CENTER);
+//	            centerSouth.add(createEntryAdministrator);
+//	                createEntryAdministrator.setPreferredSize(new Dimension(145,145));
+//	                createEntryAdministrator.addActionListener(new CreateAdministratorButtonActionHandler());
+//	            centerSouth.add(updateEntry);
+//	                updateEntry.addActionListener(new UpdateButtonActionHandler());
+//	            centerSouth.add(deleteEntry);
+//	                deleteEntry.addActionListener(new DeleteButtonActionHandler());
+//	            centerSouth.add(refresh);
+//	                refresh.addActionListener(new RefreshButtonActionHandler());
+//
+//	            centerPanel.revalidate();
+//	            centerPanel.repaint();
+//	            gems.repaint();
+//	            gems.revalidate();
+//	        }
+//	        catch(Exception e)
+//	        {
+//	            // Handle any exceptions here
+//	        }
+//	    }
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//ORIGNAL !!!!!!!
 	private class viewAdministratorsHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -344,6 +417,9 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
+				
+				//removing old version if exists -- to then be added again 
+				centerSouth.remove(administratorScroll);
 				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
@@ -361,16 +437,30 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();//test
+
+					
+					
+					
+					//new additions below - @11:19
+					String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
+					Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
+					JTable administratorTable = new JTable(administratorData, administratorHeader);
+					JScrollPane administratorScroll = new JScrollPane(administratorTable);
+					
+					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
 			}
 			catch(Exception e)
 			{
 				//create a pop up here?? idk yet 
 			}
-			centerPanel.revalidate();//test
-			centerPanel.repaint();//test
 		}
 	}
+	
+	
+	
+	
+	
+	
 	//View Account Managers Listener
 	private class viewAccountManagersHandler implements ActionListener
 	{
@@ -402,6 +492,7 @@ public class GEMS_GUI
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				centerPanel.revalidate();
+				
 			}
 			catch(Exception e)
 			{
@@ -409,6 +500,13 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
 	//View Suppliers Listener
 	private class viewSuppliersHandler implements ActionListener
 	{
@@ -447,6 +545,15 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//View Orders Listener
 	private class viewOrdersHandler implements ActionListener
 	{
@@ -491,6 +598,12 @@ public class GEMS_GUI
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	//Create Entry Administrator
 	private JOptionPane createAdminEntryPopUp = new JOptionPane("CREATE ADMIN ENTRY");
 	private JTextField createAdminForename = new JTextField("Forename...");
@@ -500,47 +613,51 @@ public class GEMS_GUI
 	//****************************CUD ACTION LISTENERS*****************************
 	private class CreateAdministratorButtonActionHandler implements ActionListener
 	{
-		public void actionPerformed(ActionEvent event)
-		{
-			try
-			{
-				gems.add(createAdminEntryPopUp);
-				
-				createAdminEntryPopUp.setLayout(new GridLayout(3,2));
+	    public void actionPerformed(ActionEvent event)
+	    {
+	        try
+	        {
+	            gems.add(createAdminEntryPopUp);
 
-				createAdminEntryPopUp.add(createAdminForename);
-				createAdminEntryPopUp.add(createAdminSurname);
-				createAdminEntryPopUp.add(createAdminPhoneNo);
+	            createAdminEntryPopUp.setLayout(new GridLayout(3,2));
 
-				int result = JOptionPane.showConfirmDialog(null, createAdminEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            createAdminEntryPopUp.add(createAdminForename);
+	            createAdminEntryPopUp.add(createAdminSurname);
+	            createAdminEntryPopUp.add(createAdminPhoneNo);
 
-				
-				if(result == JOptionPane.OK_OPTION)
-				{
-					String forename = createAdminForename.getText();
-					String surname = createAdminSurname.getText();
-					String phoneNo = createAdminPhoneNo.getText();
-					
-					y.createAdministratorObject(forename, surname, phoneNo);
-					
-				    DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
-				    model.addRow(new Object[]{forename, surname, phoneNo});
-				    
+	            int result = JOptionPane.showConfirmDialog(null, createAdminEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
-				}
-				gems.repaint();//test
-				gems.revalidate();//test
-				
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String forename = createAdminForename.getText();
+	                String surname = createAdminSurname.getText();
+	                String phoneNo = createAdminPhoneNo.getText();
 
-				
-				
-			}
-			catch(Exception e)
-			{
-				
-			}
-		}
+	                y.createAdministratorObject(forename, surname, phoneNo);
+
+	                // Update the table model
+	                DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
+	                model.addRow(new Object[]{forename, surname, phoneNo});
+	                model.fireTableDataChanged();
+	            }
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	        }
+	    }
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private class CreateAccountManagerButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -556,6 +673,12 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
 	private class CreateClientButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -571,6 +694,11 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
+	
 	private class CreateOrderButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -586,6 +714,10 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
 	private class CreateItemButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -601,6 +733,10 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	
 	private class CreateSupplierButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -657,24 +793,31 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+//	//PUTTING THE TABLE SHIT INTO REFRESH 
+//	private String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
+//	private Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
+//	private JTable administratorTable = new JTable(administratorData, administratorHeader);
+//	private JScrollPane administratorScroll = new JScrollPane(administratorTable);
+	
 	private class RefreshButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.revalidate();
-				gems.repaint();
+				
+				
+				
 			}
 			catch(Exception e)
 			{
-				
+				e.printStackTrace();
 			}
-			gems.revalidate();
-			gems.repaint();
 		}
 	}
-	
+
+	//add  a new refresh method here which removes all Scrolls and re add's them respectively
 	
 	
 	
