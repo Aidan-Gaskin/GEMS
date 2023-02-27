@@ -219,13 +219,19 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
+
 				
-				//Removes Duplicate Create Buttons
+				
+				//Removes Duplicate Buttons
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryOrder);
 				centerSouth.remove(createEntryAccountManager);
 				centerSouth.remove(createEntryAdministrator);
+				centerSouth.remove(refresh);
+				centerSouth.remove(updateEntry);
+				centerSouth.remove(deleteEntry);
+				
 
 				//Creating The Layout & Implementing Action Listeners
 				centerPanel.add(itemScroll, BorderLayout.CENTER);
@@ -238,7 +244,16 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();
+				
+				//new additions below - @11:19
+				String[] itemHeader = {"Item ID","Description","Supplier ID","Buy Price",
+						"Sell Price"};
+				Object[][] itemData = y.retrieveSelectedTableObject("Item");
+				JTable itemTable = new JTable(itemData, itemHeader);
+				JScrollPane itemScroll = new JScrollPane(itemTable);
+				
+				centerPanel.add(itemScroll, BorderLayout.CENTER);	
+				
 				//int refresh experimental feature 
 				intRefresh = 1;
 			}
@@ -278,6 +293,9 @@ public class GEMS_GUI
 				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryAccountManager);
 				centerSouth.remove(createEntryAdministrator);
+				centerSouth.remove(refresh);
+				centerSouth.remove(updateEntry);
+				centerSouth.remove(deleteEntry);
 
 				centerPanel.add(clientScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryClient);
@@ -332,6 +350,9 @@ public class GEMS_GUI
 				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryAccountManager);
 				centerSouth.remove(createEntryOrder);
+				centerSouth.remove(refresh);
+				centerSouth.remove(updateEntry);
+				centerSouth.remove(deleteEntry);
 
 				centerPanel.add(administratorScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryAdministrator);
@@ -388,6 +409,9 @@ public class GEMS_GUI
 				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryOrder);
 				centerSouth.remove(createEntryAdministrator);
+				centerSouth.remove(refresh);
+				centerSouth.remove(updateEntry);
+				centerSouth.remove(deleteEntry);
 				
 				centerPanel.add(accountManagerScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryAccountManager);
@@ -399,7 +423,16 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();
+
+					//Views latest version of table 
+					String[] accountHeader = {"Account Manager ID","Forename","Surname","Phone Number"};
+					Object[][] accountData = y.retrieveSelectedTableObject("AccountManager");
+					JTable accountTable = new JTable(accountData, accountHeader);
+					JScrollPane accountScroll = new JScrollPane(accountTable);
+					
+					centerPanel.add(accountScroll, BorderLayout.CENTER);		
+					
+					
 				//int refresh experimental feature 
 				intRefresh = 4;
 				
@@ -436,6 +469,9 @@ public class GEMS_GUI
 				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryAccountManager);
 				centerSouth.remove(createEntryAdministrator);
+				centerSouth.remove(refresh);
+				centerSouth.remove(updateEntry);
+				centerSouth.remove(deleteEntry);
 				
 				centerPanel.add(supplierScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntrySupplier);
@@ -447,7 +483,17 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();
+
+					//new additions below - @11:19
+					String[] supplierHeader = {"Supplier ID","Company Name","Address","Contact Forename",
+							"Contact Surname", "Email", "Phone Number"};
+					Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
+					JTable supplierTable = new JTable(supplierData, supplierHeader);
+					JScrollPane supplierScroll = new JScrollPane(supplierTable);
+					
+					centerPanel.add(supplierScroll, BorderLayout.CENTER);		
+					
+					
 				//int refresh experimental feature 
 				intRefresh = 5;
 
@@ -486,6 +532,9 @@ public class GEMS_GUI
 				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryAccountManager);
 				centerSouth.remove(createEntryAdministrator);
+				centerSouth.remove(refresh);
+				centerSouth.remove(updateEntry);
+				centerSouth.remove(deleteEntry);
 				
 				
 
@@ -499,7 +548,16 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				centerPanel.revalidate();
+				
+					//new additions below - @11:19
+					String[] orderHeader = {"Order ID","Client ID","Account Manager ID","Admin ID",
+							"Item ID", "Quantity", "Supplier ID", "Delivery Address"};
+					Object[][] orderData = y.retrieveSelectedTableObject("Order");
+					JTable orderTable = new JTable(orderData, orderHeader);
+					JScrollPane orderScroll = new JScrollPane(orderTable);
+					
+					centerPanel.add(orderScroll, BorderLayout.CENTER);	
+					
 				//int refresh experimental feature 
 				intRefresh = 6;
 
@@ -532,7 +590,7 @@ public class GEMS_GUI
 	    public void actionPerformed(ActionEvent event)
 	    {
 	        try
-	        {
+	        {	   
 	            gems.add(createAdminEntryPopUp);
 
 	            createAdminEntryPopUp.setLayout(new GridLayout(3,2));
