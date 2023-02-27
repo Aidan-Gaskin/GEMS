@@ -86,27 +86,6 @@ public class GEMS
             e.printStackTrace();
         }
     }
-//    public void createAdministratorObject(String forename, String surname, String phoneNo) throws SQLException 
-//    {
-//    	try
-//    	{
-//    		PreparedStatement ps = connection.prepareStatement("INSERT INTO gemsDB.Administrator (forename, surname, phoneNo) VALUES "
-//			+ "('"+forename+"','"+surname+"', '"+phoneNo+"');");
-//			int status = ps.executeUpdate();
-//			if(status != 0)
-//			{
-//				System.out.println("\nRecord was inserted.");
-//			}
-//			else
-//			{
-//				System.out.println("\nRecord not inserted.");
-//			}
-//    	}
-//    	catch(Exception e)
-//    	{
-//    		e.printStackTrace();
-//    	}
-//    }
     //********************************************************************************
     //********************************************************************************
     public void createAccountManagerObject(String forename, String surname, String phoneNo)

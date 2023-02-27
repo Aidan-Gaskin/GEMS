@@ -74,24 +74,24 @@ public class GEMS_GUI
 //		private JTextField createAccountSurname = new JTextField("Surname...");
 //		private JTextField createAccountPhoneNo = new JTextField("Phone Number...");
 		
-	//Create Entry Order
-		private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
-		private JTextField createOrderClientID = new JTextField("Client ID...");
-		private JTextField createOrderAccountManID = new JTextField("Account Manager ID...");
-		private JTextField createOrderAdminID = new JTextField("Administrator ID...");
-		private JTextField createOrderItemID = new JTextField("Item ID...");
-		private JTextField createOrderQuantity = new JTextField("Quantity...");
-		private JTextField createOrderSupplierID = new JTextField("Supplier ID...");
-		private JTextField createOrderDeliveryAddress = new JTextField("Delivery Address...");
+//	//Create Entry Order
+//		private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
+//		private JTextField createOrderClientID = new JTextField("Client ID...");
+//		private JTextField createOrderAccountManID = new JTextField("Account Manager ID...");
+//		private JTextField createOrderAdminID = new JTextField("Administrator ID...");
+//		private JTextField createOrderItemID = new JTextField("Item ID...");
+//		private JTextField createOrderQuantity = new JTextField("Quantity...");
+//		private JTextField createOrderSupplierID = new JTextField("Supplier ID...");
+//		private JTextField createOrderDeliveryAddress = new JTextField("Delivery Address...");
 		
-	//Create Entry Supplier
-		private JOptionPane createSupplieEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
-		private JTextField createSupplierCompanyName = new JTextField("Company Name...");
-		private JTextField createSupplierAddress = new JTextField("Address...");
-		private JTextField createSupplierForename = new JTextField("Contact Forename...");
-		private JTextField createSupplierSurname = new JTextField("Contact Surname...");
-		private JTextField createSupplierEmail = new JTextField("Contact Email...");
-		private JTextField createSupplierPhoneNo = new JTextField("Contact Phone Number...");
+//	//Create Entry Supplier
+//		private JOptionPane createSupplieEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
+//		private JTextField createSupplierCompanyName = new JTextField("Company Name...");
+//		private JTextField createSupplierAddress = new JTextField("Address...");
+//		private JTextField createSupplierForename = new JTextField("Contact Forename...");
+//		private JTextField createSupplierSurname = new JTextField("Contact Surname...");
+//		private JTextField createSupplierEmail = new JTextField("Contact Email...");
+//		private JTextField createSupplierPhoneNo = new JTextField("Contact Phone Number...");
 		
 //	//Create Entry Item
 //		private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
@@ -719,15 +719,68 @@ public class GEMS_GUI
 	
 	
 	
-	
+	//Create Entry Order
+	private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
+	private JTextField createOrderClientID = new JTextField("Client ID...");
+	private JTextField createOrderAccountManID = new JTextField("Account Manager ID...");
+	private JTextField createOrderAdminID = new JTextField("Administrator ID...");
+	private JTextField createOrderItemID = new JTextField("Item ID...");
+	private JTextField createOrderQuantity = new JTextField("Quantity...");
+	private JTextField createOrderSupplierID = new JTextField("Supplier ID...");
+	private JTextField createOrderDeliveryAddress = new JTextField("Delivery Address...");
 	private class CreateOrderButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.add(createOrderEntryPopUp);
-				createOrderEntryPopUp.showMessageDialog(gems, "test");
+	            gems.add(createOrderEntryPopUp);
+
+	            createOrderEntryPopUp.setLayout(new GridLayout(3,2));
+
+	            createOrderEntryPopUp.add(createOrderClientID);
+	            createOrderEntryPopUp.add(createOrderAccountManID);
+	            createOrderEntryPopUp.add(createOrderAdminID);
+	            createOrderEntryPopUp.add(createOrderItemID);
+	            createOrderEntryPopUp.add(createOrderQuantity);
+	            createOrderEntryPopUp.add(createOrderSupplierID);
+	            createOrderEntryPopUp.add(createOrderDeliveryAddress);
+
+
+
+	            int result = JOptionPane.showConfirmDialog(null, createOrderEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+                System.out.println("HEREHERHERHERHERHEHREHREHREHRE");
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String clientID = createOrderClientID.getText();
+	                String accountManID = createOrderAccountManID.getText();
+	                String adminID = createOrderAdminID.getText();
+	                String itemID = createOrderItemID.getText();
+	                String quantity = createOrderQuantity.getText();
+	                String supplierID = createOrderSupplierID.getText();
+	                String deliveryAddress = createOrderDeliveryAddress.getText();
+
+	                int clientIDInt = Integer.parseInt(clientID);
+	                int accountManIDInt = Integer.parseInt(accountManID);
+	                int adminIDInt = Integer.parseInt(adminID);
+	                int itemIDInt = Integer.parseInt(itemID);
+	                int quantityInt = Integer.parseInt(quantity);
+	                int supplierIDInt = Integer.parseInt(supplierID);
+
+
+
+
+	                y.createOrderObject(clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
+	                		quantityInt, supplierIDInt, deliveryAddress);
+
+	                //Update the table model
+	                DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
+	                model.addRow(new Object[]{clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
+	                		quantityInt, supplierIDInt, deliveryAddress});
+	                model.fireTableDataChanged();
+	            }
 			}
 			catch(Exception e)
 			{
@@ -771,7 +824,7 @@ public class GEMS_GUI
 	                
 	                int itemSupplierIDInt = Integer.parseInt(supplierID);
 	                double buyPriceDouble = Double.parseDouble(buyPrice);
-	                double sellPriceDouble = Double.parseDouble(buyPrice);
+	                double sellPriceDouble = Double.parseDouble(sellPrice);
 
 
 	                y.createItemObject(description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble);
@@ -791,15 +844,52 @@ public class GEMS_GUI
 	
 	
 	
-	
+	//Create Entry Supplier
+	private JOptionPane createSupplierEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
+	private JTextField createSupplierCompanyName = new JTextField("Company Name...");
+	private JTextField createSupplierAddress = new JTextField("Address...");
+	private JTextField createSupplierForename = new JTextField("Contact Forename...");
+	private JTextField createSupplierSurname = new JTextField("Contact Surname...");
+	private JTextField createSupplierEmail = new JTextField("Contact Email...");
+	private JTextField createSupplierPhoneNo = new JTextField("Contact Phone Number...");
 	private class CreateSupplierButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.add(createOrderEntryPopUp);
-				createOrderEntryPopUp.showMessageDialog(gems, "test");
+	            gems.add(createSupplierEntryPopUp);
+
+	            createSupplierEntryPopUp.setLayout(new GridLayout(3,2));
+
+	            createSupplierEntryPopUp.add(createSupplierCompanyName);
+	            createSupplierEntryPopUp.add(createSupplierAddress);
+	            createSupplierEntryPopUp.add(createSupplierForename);
+	            createSupplierEntryPopUp.add(createSupplierSurname);
+	            createSupplierEntryPopUp.add(createSupplierEmail);
+	            createSupplierEntryPopUp.add(createSupplierPhoneNo);
+
+
+
+
+	            int result = JOptionPane.showConfirmDialog(null, createSupplierEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String companyName = createSupplierCompanyName.getText();
+	                String address = createSupplierAddress.getText();
+	                String forename = createSupplierForename.getText();
+	                String surname = createSupplierSurname.getText();
+	                String email = createSupplierEmail.getText();
+	                String phoneNo = createSupplierPhoneNo.getText();
+
+	                y.createSupplierObject(companyName, address, forename, surname, email, phoneNo);
+
+	                //Update the table model
+	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+	                model.addRow(new Object[]{companyName, address, forename, surname, email, phoneNo});
+	                model.fireTableDataChanged();
+	            }
 			}
 			catch(Exception e)
 			{
@@ -864,7 +954,9 @@ public class GEMS_GUI
 				
 				switch(intRefresh)
 				{
-				case 1://ITEMS 
+				
+				//*****ITEM*****
+				case 1:
 					centerPanel.revalidate();
 					
 					//removing old version of the table
@@ -880,8 +972,8 @@ public class GEMS_GUI
 					//Adding the table back to GUI 
 					centerPanel.add(itemScroll, BorderLayout.CENTER);	
 				break;
-
-				//CLIENT
+				
+				//*****CLIENT*****
 				case 2:
 					centerPanel.revalidate();
 					
@@ -932,10 +1024,37 @@ public class GEMS_GUI
 				centerPanel.add(accountManagerScroll, BorderLayout.CENTER);	
 				break;
 				
-				case 5: System.out.println("\nCASE 5");
+				//*****SUPPLIER*****
+				case 5:
+				centerPanel.revalidate();
+				
+				//removing old version of the table
+				centerSouth.remove(supplierScroll);
+				//Refreshing the table to match the Database back-end
+				String[] supplierHeader = {"Supplier ID", "Company Name", "Address", "Contact Forename",
+						"Contact Surname", "Email", "Phone Number"};
+				Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
+				JTable supplierTable = new JTable(supplierData, supplierHeader);
+				JScrollPane supplierScroll = new JScrollPane(supplierTable);					
+				
+				//Adding the table back to GUI 
+				centerPanel.add(supplierScroll, BorderLayout.CENTER);
 				break;
 
-				case 6: System.out.println("\nCASE 6");
+				//*****ORDER*****
+				case 6:
+				centerPanel.revalidate();
+					
+				//removing old version of the table
+				centerSouth.remove(orderScroll);
+				//Refreshing the table to match the Database back-end
+				String[] orderHeader = {"Order ID", "Client ID", "Account Manager ID", "Admin ID",
+						"Item ID", "Quantity", "Supplier ID", "Delivery Address"};
+				Object[][] orderData = y.retrieveSelectedTableObject("Order");
+				JTable orderTable = new JTable(orderData, orderHeader);
+				JScrollPane orderScroll = new JScrollPane(orderTable);					
+				//Adding the table back to GUI 
+				centerPanel.add(orderScroll, BorderLayout.CENTER);
 				break;
 				}
 				
@@ -945,10 +1064,7 @@ public class GEMS_GUI
 				e.printStackTrace();
 			}
 		}
-	}
-
-	//add  a new refresh method here which removes all Scrolls and re add's them respectively
-	
+	}	
 	
 	
 }
