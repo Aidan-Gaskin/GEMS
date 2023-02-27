@@ -38,15 +38,11 @@ public class GEMS_GUI
 		private JButton createEntryItem = new JButton("Create Entry");
 		private JButton createEntryOrder = new JButton("Create Entry");
 		private JButton createEntrySupplier = new JButton("Create Entry");
-
 		
 		private JButton updateEntry = new JButton("Update Entry");
 		private JButton deleteEntry = new JButton("Delete Entry");
 		private JButton refresh = new JButton("Refresh");
 		
-	//Buttons Used In All CRUD 
-		private JButton apply = new JButton("Apply");
-		private JButton cancel = new JButton("Cancel");
 		
 	//Update Entry Frame 
 		private JOptionPane updateEntryPopUp = new JOptionPane("UPDATE ENTRY");
@@ -61,56 +57,8 @@ public class GEMS_GUI
 		private JTextField deleteTable = new JTextField("Table...");
 		private JTextField deleteAttribute = new JTextField("Attribute...");
 		private JTextField deleteValue = new JTextField("Value...");
-		
-//	//Create Entry Administrator
-//		private JOptionPane createAdminEntryPopUp = new JOptionPane("CREATE ADMIN ENTRY");
-//		private JTextField createAdminForename = new JTextField("Forename...");
-//		private JTextField createAdminSurname = new JTextField("Surname...");
-//		private JTextField createAdminPhoneNo = new JTextField("Phone Number...");
-		
-//	//Create Entry AccountManager 
-//		private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
-//		private JTextField createAccountForename = new JTextField("Forename...");
-//		private JTextField createAccountSurname = new JTextField("Surname...");
-//		private JTextField createAccountPhoneNo = new JTextField("Phone Number...");
-		
-//	//Create Entry Order
-//		private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
-//		private JTextField createOrderClientID = new JTextField("Client ID...");
-//		private JTextField createOrderAccountManID = new JTextField("Account Manager ID...");
-//		private JTextField createOrderAdminID = new JTextField("Administrator ID...");
-//		private JTextField createOrderItemID = new JTextField("Item ID...");
-//		private JTextField createOrderQuantity = new JTextField("Quantity...");
-//		private JTextField createOrderSupplierID = new JTextField("Supplier ID...");
-//		private JTextField createOrderDeliveryAddress = new JTextField("Delivery Address...");
-		
-//	//Create Entry Supplier
-//		private JOptionPane createSupplieEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
-//		private JTextField createSupplierCompanyName = new JTextField("Company Name...");
-//		private JTextField createSupplierAddress = new JTextField("Address...");
-//		private JTextField createSupplierForename = new JTextField("Contact Forename...");
-//		private JTextField createSupplierSurname = new JTextField("Contact Surname...");
-//		private JTextField createSupplierEmail = new JTextField("Contact Email...");
-//		private JTextField createSupplierPhoneNo = new JTextField("Contact Phone Number...");
-		
-//	//Create Entry Item
-//		private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
-//		private JTextField createItemDescription = new JTextField("Description...");
-//		private JTextField createItemSupplierID = new JTextField("Supplier ID...");
-//		private JTextField createItemBuyPrice = new JTextField("Buy Price...");
-//		private JTextField createItemSellPrice = new JTextField("Sell Price....");
-		
-//	//Create Entry Client 
-//		private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
-//		private JTextField createClientCompanyName = new JTextField("Company Name...");
-//		private JTextField createClientAddress = new JTextField("Address...");
-//		private JTextField createClientAccountManID = new JTextField("Account Manager ID...");
-//		private JTextField createClientForename = new JTextField("Forename...");
-//		private JTextField createClientSurname = new JTextField("Surname...");
-//		private JTextField createClientEmail = new JTextField("Contact Email...");
-//		private JTextField createClientPhoneNo = new JTextField("Contact Phone Number...");
 	
-	//GEMS for Data Operations 
+		//GEMS for Data Operations 
 		private GEMS y = new GEMS();
 		
 		//--------------------
@@ -954,21 +902,17 @@ public class GEMS_GUI
 				
 				switch(intRefresh)
 				{
-				
 				//*****ITEM*****
 				case 1:
 					centerPanel.revalidate();
-					
 					//removing old version of the table
 					centerSouth.remove(itemScroll);
-					
 					//Refreshing the table to match the Database back-end
 					String[] itemHeader = {"Item ID","Description","Supplier ID","Buy Price",
 							"Sell Price"};
 					Object[][] itemData = y.retrieveSelectedTableObject("Item");
 					JTable itemTable = new JTable(itemData, itemHeader);
 					JScrollPane itemScroll = new JScrollPane(itemTable);					
-			
 					//Adding the table back to GUI 
 					centerPanel.add(itemScroll, BorderLayout.CENTER);	
 				break;
@@ -976,88 +920,76 @@ public class GEMS_GUI
 				//*****CLIENT*****
 				case 2:
 					centerPanel.revalidate();
-					
 					//removing old version of the table
 					centerSouth.remove(clientScroll);
-					
 					//Refreshing the table to match the Database back-end
 					String[] clientHeader = {"Client ID","Company Name","Address","Account Manager ID",
 							"Contact Forename", "Contact Surname", "Email", "Phone Number"};
 					Object[][] clientData = y.retrieveSelectedTableObject("Client");
 					JTable clientTable = new JTable(clientData, clientHeader);
 					JScrollPane clientScroll = new JScrollPane(clientTable);					
-			
 					//Adding the table back to GUI 
 					centerPanel.add(clientScroll, BorderLayout.CENTER);	
 				break;
 				
 				//*****ADMINISTRATOR*****
 				case 3:
-				centerPanel.revalidate();
-				
-				//removing old version of the table
-				centerSouth.remove(administratorScroll);
-				
-				//Refreshing the table to match the Database back-end
-				String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
-				Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
-				JTable administratorTable = new JTable(administratorData, administratorHeader);
-				JScrollPane administratorScroll = new JScrollPane(administratorTable);					
-		
-				//Adding the table back to GUI 
-				centerPanel.add(administratorScroll, BorderLayout.CENTER);	
+					centerPanel.revalidate();
+					//removing old version of the table
+					centerSouth.remove(administratorScroll);
+					//Refreshing the table to match the Database back-end
+					String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
+					Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
+					JTable administratorTable = new JTable(administratorData, administratorHeader);
+					JScrollPane administratorScroll = new JScrollPane(administratorTable);					
+					//Adding the table back to GUI 
+					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
 				break;
 
 				//*****ACCOUNT MANAGER*****
 				case 4:
-				centerPanel.revalidate();
-				
-				//removing old version of the table
-				centerSouth.remove(accountManagerScroll);
-				//Refreshing the table to match the Database back-end
-				String[] accountManagerHeader = {"Account Manager ID","Forename","Surname","Phone Number"};
-				Object[][] accountManagerData = y.retrieveSelectedTableObject("AccountManager");
-				JTable accountManagerTable = new JTable(accountManagerData, accountManagerHeader);
-				JScrollPane accountManagerScroll = new JScrollPane(accountManagerTable);					
-			
-				//Adding the table back to GUI 
-				centerPanel.add(accountManagerScroll, BorderLayout.CENTER);	
+					centerPanel.revalidate();
+					//removing old version of the table
+					centerSouth.remove(accountManagerScroll);
+					//Refreshing the table to match the Database back-end
+					String[] accountManagerHeader = {"Account Manager ID","Forename","Surname","Phone Number"};
+					Object[][] accountManagerData = y.retrieveSelectedTableObject("AccountManager");
+					JTable accountManagerTable = new JTable(accountManagerData, accountManagerHeader);
+					JScrollPane accountManagerScroll = new JScrollPane(accountManagerTable);					
+					//Adding the table back to GUI 
+					centerPanel.add(accountManagerScroll, BorderLayout.CENTER);	
 				break;
 				
 				//*****SUPPLIER*****
 				case 5:
-				centerPanel.revalidate();
-				
-				//removing old version of the table
-				centerSouth.remove(supplierScroll);
-				//Refreshing the table to match the Database back-end
-				String[] supplierHeader = {"Supplier ID", "Company Name", "Address", "Contact Forename",
+					centerPanel.revalidate();
+					//removing old version of the table
+					centerSouth.remove(supplierScroll);
+					//Refreshing the table to match the Database back-end
+					String[] supplierHeader = {"Supplier ID", "Company Name", "Address", "Contact Forename",
 						"Contact Surname", "Email", "Phone Number"};
-				Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
-				JTable supplierTable = new JTable(supplierData, supplierHeader);
-				JScrollPane supplierScroll = new JScrollPane(supplierTable);					
-				
-				//Adding the table back to GUI 
-				centerPanel.add(supplierScroll, BorderLayout.CENTER);
+					Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
+					JTable supplierTable = new JTable(supplierData, supplierHeader);
+					JScrollPane supplierScroll = new JScrollPane(supplierTable);					
+					//Adding the table back to GUI 
+					centerPanel.add(supplierScroll, BorderLayout.CENTER);
 				break;
 
 				//*****ORDER*****
 				case 6:
-				centerPanel.revalidate();
-					
-				//removing old version of the table
-				centerSouth.remove(orderScroll);
-				//Refreshing the table to match the Database back-end
-				String[] orderHeader = {"Order ID", "Client ID", "Account Manager ID", "Admin ID",
+					centerPanel.revalidate();
+					//removing old version of the table
+					centerSouth.remove(orderScroll);
+					//Refreshing the table to match the Database back-end
+					String[] orderHeader = {"Order ID", "Client ID", "Account Manager ID", "Admin ID",
 						"Item ID", "Quantity", "Supplier ID", "Delivery Address"};
-				Object[][] orderData = y.retrieveSelectedTableObject("Order");
-				JTable orderTable = new JTable(orderData, orderHeader);
-				JScrollPane orderScroll = new JScrollPane(orderTable);					
-				//Adding the table back to GUI 
-				centerPanel.add(orderScroll, BorderLayout.CENTER);
+					Object[][] orderData = y.retrieveSelectedTableObject("Order");
+					JTable orderTable = new JTable(orderData, orderHeader);
+					JScrollPane orderScroll = new JScrollPane(orderTable);					
+					//Adding the table back to GUI 
+					centerPanel.add(orderScroll, BorderLayout.CENTER);
 				break;
 				}
-				
 			}
 			catch(Exception e)
 			{
