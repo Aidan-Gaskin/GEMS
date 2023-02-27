@@ -93,12 +93,12 @@ public class GEMS_GUI
 		private JTextField createSupplierEmail = new JTextField("Contact Email...");
 		private JTextField createSupplierPhoneNo = new JTextField("Contact Phone Number...");
 		
-	//Create Entry Item
-		private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
-		private JTextField createItemDescription = new JTextField("Description...");
-		private JTextField createItemSupplierID = new JTextField("Supplier ID...");
-		private JTextField createItemBuyPrice = new JTextField("Buy Price...");
-		private JTextField createItemSellPrice = new JTextField("Sell Price....");
+//	//Create Entry Item
+//		private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
+//		private JTextField createItemDescription = new JTextField("Description...");
+//		private JTextField createItemSupplierID = new JTextField("Supplier ID...");
+//		private JTextField createItemBuyPrice = new JTextField("Buy Price...");
+//		private JTextField createItemSellPrice = new JTextField("Sell Price....");
 		
 //	//Create Entry Client 
 //		private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
@@ -738,15 +738,49 @@ public class GEMS_GUI
 	
 	
 	
-	
+	//Create Entry Item
+	private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
+	private JTextField createItemDescription = new JTextField("Description...");
+	private JTextField createItemSupplierID = new JTextField("Supplier ID...");
+	private JTextField createItemBuyPrice = new JTextField("Buy Price...");
+	private JTextField createItemSellPrice = new JTextField("Sell Price....");
 	private class CreateItemButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.add(createOrderEntryPopUp);
-				createOrderEntryPopUp.showMessageDialog(gems, "test");
+	            gems.add(createItemEntryPopUp);
+
+	            createItemEntryPopUp.setLayout(new GridLayout(3,2));
+
+	            createItemEntryPopUp.add(createItemDescription);
+	            createItemEntryPopUp.add(createItemSupplierID);
+	            createItemEntryPopUp.add(createItemBuyPrice);
+	            createItemEntryPopUp.add(createItemSellPrice);
+
+
+	            int result = JOptionPane.showConfirmDialog(null, createItemEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String description = createItemDescription.getText();
+	                String supplierID = createItemSupplierID.getText();
+	                String buyPrice = createItemBuyPrice.getText();
+	                String sellPrice = createItemSellPrice.getText();
+	                
+	                int itemSupplierIDInt = Integer.parseInt(supplierID);
+	                double buyPriceDouble = Double.parseDouble(buyPrice);
+	                double sellPriceDouble = Double.parseDouble(buyPrice);
+
+
+	                y.createItemObject(description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble);
+
+	                //Update the table model
+	                DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
+	                model.addRow(new Object[]{description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble});
+	                model.fireTableDataChanged();
+	            }
 			}
 			catch(Exception e)
 			{
@@ -830,7 +864,21 @@ public class GEMS_GUI
 				
 				switch(intRefresh)
 				{
-				case 1: System.out.println("\nCASE 1");
+				case 1://ITEMS 
+					centerPanel.revalidate();
+					
+					//removing old version of the table
+					centerSouth.remove(itemScroll);
+					
+					//Refreshing the table to match the Database back-end
+					String[] itemHeader = {"Item ID","Description","Supplier ID","Buy Price",
+							"Sell Price"};
+					Object[][] itemData = y.retrieveSelectedTableObject("Item");
+					JTable itemTable = new JTable(itemData, itemHeader);
+					JScrollPane itemScroll = new JScrollPane(itemTable);					
+			
+					//Adding the table back to GUI 
+					centerPanel.add(itemScroll, BorderLayout.CENTER);	
 				break;
 
 				//CLIENT
