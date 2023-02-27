@@ -356,56 +356,7 @@ public class GEMS_GUI
 	
 	
 
-//	private class viewAdministratorsHandler implements ActionListener
-//	{
-//	    public void actionPerformed(ActionEvent event)
-//	    {
-//	        try
-//	        {
-//	            // Fetch the new data here
-//	            Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
-//
-//	            centerPanel.revalidate();
-//	            // Remove the existing components
-//	            centerPanel.remove(clientScroll);
-//	            centerPanel.remove(itemScroll);
-//	            centerPanel.remove(accountManagerScroll);
-//	            centerPanel.remove(supplierScroll);
-//	            centerPanel.remove(orderScroll);
-//	            
-//	            centerSouth.remove(createEntryClient);
-//	            centerSouth.remove(createEntrySupplier);
-//	            centerSouth.remove(createEntryItem);
-//	            centerSouth.remove(createEntryAccountManager);
-//	            centerSouth.remove(createEntryOrder);
-//
-//	            // Create a new table model with the new data
-//	            DefaultTableModel tableModel = new DefaultTableModel(administratorData, administratorHeader);
-//	            JTable administratorTable = new JTable(tableModel);
-//
-//	            // Add the new components that will display the new data
-//	            centerPanel.add(new JScrollPane(administratorTable), BorderLayout.CENTER);
-//	            centerSouth.add(createEntryAdministrator);
-//	                createEntryAdministrator.setPreferredSize(new Dimension(145,145));
-//	                createEntryAdministrator.addActionListener(new CreateAdministratorButtonActionHandler());
-//	            centerSouth.add(updateEntry);
-//	                updateEntry.addActionListener(new UpdateButtonActionHandler());
-//	            centerSouth.add(deleteEntry);
-//	                deleteEntry.addActionListener(new DeleteButtonActionHandler());
-//	            centerSouth.add(refresh);
-//	                refresh.addActionListener(new RefreshButtonActionHandler());
-//
-//	            centerPanel.revalidate();
-//	            centerPanel.repaint();
-//	            gems.repaint();
-//	            gems.revalidate();
-//	        }
-//	        catch(Exception e)
-//	        {
-//	            // Handle any exceptions here
-//	        }
-//	    }
-//	}
+
 	
 	
 	
@@ -656,7 +607,7 @@ public class GEMS_GUI
 
 	                y.createAdministratorObject(forename, surname, phoneNo);
 
-	                // Update the table model
+	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
 	                model.addRow(new Object[]{forename, surname, phoneNo});
 	                model.fireTableDataChanged();
@@ -836,7 +787,20 @@ public class GEMS_GUI
 				case 2: System.out.println("\nCASE 2");
 				break;
 				
-				case 3: System.out.println("\nCASE 3");
+				case 3://Administrator
+				centerPanel.revalidate();
+				
+				//removing old version of the table
+				centerSouth.remove(administratorScroll);
+				
+				//Refreshing the table to match the Database backend
+				String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
+				Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
+				JTable administratorTable = new JTable(administratorData, administratorHeader);
+				JScrollPane administratorScroll = new JScrollPane(administratorTable);					
+		
+				//Adding the table back to GUI 
+				centerPanel.add(administratorScroll, BorderLayout.CENTER);	
 				break;
 
 				case 4: System.out.println("\nCASE 4");
