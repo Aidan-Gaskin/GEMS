@@ -158,6 +158,13 @@ public class GEMS_GUI
 		
 		
 		
+		//experimental int for refresh 
+		public int intRefresh;
+		
+		
+		
+		
+		
 		
 	//constructor 
 	public static void main(String[] args)
@@ -284,6 +291,8 @@ public class GEMS_GUI
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				centerPanel.revalidate();
+				//int refresh experimental feature 
+				intRefresh = 1;
 			}
 			catch(Exception e)
 			{
@@ -330,6 +339,8 @@ public class GEMS_GUI
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				centerPanel.revalidate();
+				//int refresh experimental feature 
+				intRefresh = 2;
 			}
 			catch(Exception e)
 			{
@@ -448,6 +459,8 @@ public class GEMS_GUI
 					JScrollPane administratorScroll = new JScrollPane(administratorTable);
 					
 					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
+					//int refresh experimental feature 
+					intRefresh = 3;
 			}
 			catch(Exception e)
 			{
@@ -492,6 +505,8 @@ public class GEMS_GUI
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				centerPanel.revalidate();
+				//int refresh experimental feature 
+				intRefresh = 4;
 				
 			}
 			catch(Exception e)
@@ -538,6 +553,9 @@ public class GEMS_GUI
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				centerPanel.revalidate();
+				//int refresh experimental feature 
+				intRefresh = 5;
+
 			}
 			catch(Exception e)
 			{
@@ -587,6 +605,9 @@ public class GEMS_GUI
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				centerPanel.revalidate();
+				//int refresh experimental feature 
+				intRefresh = 6;
+
 			}
 			catch(Exception e)
 			{
