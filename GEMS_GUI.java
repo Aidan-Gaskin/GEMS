@@ -657,18 +657,13 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
 	//Create Entry Client 
 	private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
 	private JTextField createClientCompanyName = new JTextField("Company Name...");
 	private JTextField createClientAddress = new JTextField("Address...");
 	private JTextField createClientAccountManID = new JTextField("Account Manager ID...");
-	private JTextField createClientForename = new JTextField("Forename...");
-	private JTextField createClientSurname = new JTextField("Surname...");
+	private JTextField createClientForename = new JTextField("Contact Forename...");
+	private JTextField createClientSurname = new JTextField("Contact Surname...");
 	private JTextField createClientEmail = new JTextField("Contact Email...");
 	private JTextField createClientPhoneNo = new JTextField("Contact Phone Number...");
 	private class CreateClientButtonActionHandler implements ActionListener
@@ -681,9 +676,15 @@ public class GEMS_GUI
 
 	            createClientEntryPopUp.setLayout(new GridLayout(3,2));
 
-	            createClientEntryPopUp.add(createAccountForename);
-	            createClientEntryPopUp.add(createAccountSurname);
-	            createClientEntryPopUp.add(createAccountPhoneNo);
+	            createClientEntryPopUp.add(createClientCompanyName);
+	            createClientEntryPopUp.add(createClientAddress);
+	            createClientEntryPopUp.add(createClientAccountManID);
+	            createClientEntryPopUp.add(createClientForename);
+	            createClientEntryPopUp.add(createClientSurname);
+	            createClientEntryPopUp.add(createClientEmail);
+	            createClientEntryPopUp.add(createClientPhoneNo);
+
+
 
 	            int result = JOptionPane.showConfirmDialog(null, createClientEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
@@ -696,12 +697,15 @@ public class GEMS_GUI
 	                String surname = createClientSurname.getText();
 	                String email = createClientEmail.getText();
 	                String phoneNo = createClientPhoneNo.getText();
+	                
+	                int accountManagerIDInt = Integer.parseInt(accountManagerID);
 
-	                y.createClientObject(companyName,address,accountManagerID,forename,surname,email,phoneNo);
+
+	                y.createClientObject(companyName,address,accountManagerIDInt,forename,surname,email,phoneNo);
 
 	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) clientTable.getModel();
-	                model.addRow(new Object[]{forename, surname, phoneNo, this});
+	                model.addRow(new Object[]{companyName, address, accountManagerIDInt, forename, surname, email, phoneNo});
 	                model.fireTableDataChanged();
 	            }
 			}
