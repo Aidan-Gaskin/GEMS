@@ -68,11 +68,11 @@ public class GEMS_GUI
 //		private JTextField createAdminSurname = new JTextField("Surname...");
 //		private JTextField createAdminPhoneNo = new JTextField("Phone Number...");
 		
-	//Create Entry AccountManager 
-		private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
-		private JTextField createAccountForename = new JTextField("Forename...");
-		private JTextField createAccountSurname = new JTextField("Surname...");
-		private JTextField createAccountPhoneNo = new JTextField("Phone Number...");
+//	//Create Entry AccountManager 
+//		private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
+//		private JTextField createAccountForename = new JTextField("Forename...");
+//		private JTextField createAccountSurname = new JTextField("Surname...");
+//		private JTextField createAccountPhoneNo = new JTextField("Phone Number...");
 		
 	//Create Entry Order
 		private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
@@ -620,24 +620,40 @@ public class GEMS_GUI
 	    }
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//Create Entry AccountManager 
+	private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
+	private JTextField createAccountForename = new JTextField("Forename...");
+	private JTextField createAccountSurname = new JTextField("Surname...");
+	private JTextField createAccountPhoneNo = new JTextField("Phone Number...");
 	private class CreateAccountManagerButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.add(createAccountEntryPopUp);
-				createAccountEntryPopUp.showMessageDialog(gems, "test");
+	            gems.add(createAccountEntryPopUp);
+
+	            createAccountEntryPopUp.setLayout(new GridLayout(3,2));
+
+	            createAccountEntryPopUp.add(createAccountForename);
+	            createAccountEntryPopUp.add(createAccountSurname);
+	            createAccountEntryPopUp.add(createAccountPhoneNo);
+
+	            int result = JOptionPane.showConfirmDialog(null, createAccountEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String forename = createAccountForename.getText();
+	                String surname = createAccountSurname.getText();
+	                String phoneNo = createAccountPhoneNo.getText();
+
+	                y.createAccountManagerObject(forename, surname, phoneNo);
+
+	                //Update the table model
+	                DefaultTableModel model = (DefaultTableModel) accountManagerTable.getModel();
+	                model.addRow(new Object[]{forename, surname, phoneNo});
+	                model.fireTableDataChanged();
+	            }
 			}
 			catch(Exception e)
 			{
@@ -787,13 +803,14 @@ public class GEMS_GUI
 				case 2: System.out.println("\nCASE 2");
 				break;
 				
-				case 3://Administrator
+				//ADMINISTRATOR
+				case 3:
 				centerPanel.revalidate();
 				
 				//removing old version of the table
 				centerSouth.remove(administratorScroll);
 				
-				//Refreshing the table to match the Database backend
+				//Refreshing the table to match the Database back-end
 				String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
 				Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
 				JTable administratorTable = new JTable(administratorData, administratorHeader);
@@ -803,7 +820,20 @@ public class GEMS_GUI
 				centerPanel.add(administratorScroll, BorderLayout.CENTER);	
 				break;
 
-				case 4: System.out.println("\nCASE 4");
+				//ACCOUNT MANAGER 
+				case 4:
+				centerPanel.revalidate();
+				
+				//removing old version of the table
+				centerSouth.remove(accountManagerScroll);
+				//Refreshing the table to match the Database back-end
+				String[] accountManagerHeader = {"Account Manager ID","Forename","Surname","Phone Number"};
+				Object[][] accountManagerData = y.retrieveSelectedTableObject("AccountManager");
+				JTable accountManagerTable = new JTable(accountManagerData, accountManagerHeader);
+				JScrollPane accountManagerScroll = new JScrollPane(accountManagerTable);					
+			
+				//Adding the table back to GUI 
+				centerPanel.add(accountManagerScroll, BorderLayout.CENTER);	
 				break;
 				
 				case 5: System.out.println("\nCASE 5");
