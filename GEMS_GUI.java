@@ -639,7 +639,7 @@ public class GEMS_GUI
 	            messagePanel.add(createAdminPhoneNoLabel);
 	            messagePanel.add(createAdminPhoneNo);
 
-	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Administrator", JOptionPane.OK_CANCEL_OPTION);
 
 	        	
 	            if(result == JOptionPane.OK_OPTION)
@@ -730,7 +730,7 @@ public class GEMS_GUI
 	            messagePanel.add(createAccountPhoneNoLabel);
 	            messagePanel.add(createAccountPhoneNo);
 
-	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "AccountManager", JOptionPane.OK_CANCEL_OPTION);
 
 				
 	            if(result == JOptionPane.OK_OPTION)
@@ -855,7 +855,7 @@ public class GEMS_GUI
 
 
 
-	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Client", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -998,7 +998,7 @@ public class GEMS_GUI
 
 	            
 
-	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Order", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -1113,7 +1113,7 @@ public class GEMS_GUI
 	            messagePanel.add(createItemSellPriceLabel);
 	            messagePanel.add(createItemSellPrice);
 
-	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Item", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -1230,7 +1230,7 @@ public class GEMS_GUI
 				messagePanel.add(createSupplierPhoneNoLabel);
 				messagePanel.add(createSupplierPhoneNo);
 
-				int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, messagePanel, "Supplier", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -1292,7 +1292,7 @@ public class GEMS_GUI
 				updateEntryPopUp.add(updateTablePrimaryID);
 				updateEntryPopUp.add(updateWhereValue);
 
-	            int result = JOptionPane.showConfirmDialog(null, updateEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, updateEntryPopUp, "UPDATE", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -1306,14 +1306,7 @@ public class GEMS_GUI
 
 
 	                y.updateEntry(table, attribute, newEntry, tablePrimaryID, whereValue);
-	                
-	                
-	                
-	                //HAS SUPPLIER TABLE?
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
-//	                model.addRow(new Object[]{table, attribute, newEntry, tablePrimaryID, whereValue});
-//	                model.fireTableDataChanged();
+
 	            }
 	            
 			}
@@ -1342,7 +1335,7 @@ public class GEMS_GUI
 				deleteEntryPopUp.add(deleteAttribute);
 				deleteEntryPopUp.add(deleteValue);
 
-	            int result = JOptionPane.showConfirmDialog(null, deleteEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, deleteEntryPopUp, "DELETE", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -1351,14 +1344,7 @@ public class GEMS_GUI
 	                String value = deleteValue.getText();
 
 	                y.deleteRow(table, attribute, value);
-	                
-	                
-	                
-	                //HAS SUPPLIER TABLE???
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
-//	                model.addRow(new Object[]{table, attribute, value});
-//	                model.fireTableDataChanged();
+
 	            }
 			}
 			catch(Exception e)
