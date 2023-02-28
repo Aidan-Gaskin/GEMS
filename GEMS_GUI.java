@@ -180,6 +180,9 @@ public class GEMS_GUI
 	}
 	
 	
+	
+	
+	
 	//Menu Bar
 	public void makeMenu()
 	{
@@ -219,10 +222,11 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
-
-				
+				//
+				centerPanel.remove(itemScroll);
 				
 				//Removes Duplicate Buttons
+				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryOrder);
@@ -264,14 +268,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	//View Clients Listener
+	//View CLIENTS Listener
 	private class viewClientsHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -327,8 +324,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	//ORIGNAL !!!!!!!
+	//View ADMINISTRATOR Listener
 	private class viewAdministratorsHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -384,13 +380,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	//View Account Managers Listener
+	//View ACCOUNT MANAGERS Listener
 	private class viewAccountManagersHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -403,6 +393,9 @@ public class GEMS_GUI
 				centerPanel.remove(itemScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
+				
+				//
+				centerSouth.remove(accountManagerScroll);
 				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
@@ -443,14 +436,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	//View Suppliers Listener
+	//View SUPPLIERS Listener
 	private class viewSuppliersHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -463,6 +449,9 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(itemScroll);
 				centerPanel.remove(orderScroll);
+				
+				//
+				centerPanel.remove(supplierScroll);
 				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntryOrder);
@@ -504,16 +493,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//View Orders Listener
+	//View ORDERS Listener
 	private class viewOrdersHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -526,6 +506,9 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(itemScroll);
+				
+				//
+				centerPanel.remove(orderScroll);
 				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
@@ -578,13 +561,34 @@ public class GEMS_GUI
 	
 	
 	
-	//Create Entry Administrator
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	//****************************CUD ACTION LISTENERS*****************************
+	
+	//Create Entry ADMINISTRATOR
 	private JOptionPane createAdminEntryPopUp = new JOptionPane("CREATE ADMIN ENTRY");
 	private JTextField createAdminForename = new JTextField("Forename...");
 	private JTextField createAdminSurname = new JTextField("Surname...");
 	private JTextField createAdminPhoneNo = new JTextField("Phone Number...");
-	
-	//****************************CUD ACTION LISTENERS*****************************
 	private class CreateAdministratorButtonActionHandler implements ActionListener
 	{
 	    public void actionPerformed(ActionEvent event)
@@ -619,10 +623,10 @@ public class GEMS_GUI
 	        {
 	            e.printStackTrace();
 	        }
+
 	    }
 	}
-
-	//Create Entry AccountManager 
+	//Create Entry ACCOUNT MANAGER 
 	private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
 	private JTextField createAccountForename = new JTextField("Forename...");
 	private JTextField createAccountSurname = new JTextField("Surname...");
@@ -663,7 +667,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	//Create Entry Client 
+	//Create Entry CLIENT 
 	private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
 	private JTextField createClientCompanyName = new JTextField("Company Name...");
 	private JTextField createClientAddress = new JTextField("Address...");
@@ -721,11 +725,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	//Create Entry Order
+	//Create Entry ORDER
 	private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
 	private JTextField createOrderClientID = new JTextField("Client ID...");
 	private JTextField createOrderAccountManID = new JTextField("Account Manager ID...");
@@ -794,10 +794,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	//Create Entry Item
+	//Create Entry ITEM
 	private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
 	private JTextField createItemDescription = new JTextField("Description...");
 	private JTextField createItemSupplierID = new JTextField("Supplier ID...");
@@ -847,10 +844,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	//Create Entry Supplier
+	//Create Entry SUPPLIER
 	private JOptionPane createSupplierEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
 	private JTextField createSupplierCompanyName = new JTextField("Company Name...");
 	private JTextField createSupplierAddress = new JTextField("Address...");
@@ -914,15 +908,14 @@ public class GEMS_GUI
 	
 	
 	
-	
+	//UPDATE Action Listener 
 	private class UpdateButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-				gems.repaint();
-				gems.revalidate();
+				
 			}
 			catch(Exception e)
 			{
@@ -930,6 +923,7 @@ public class GEMS_GUI
 			}
 		}
 	}
+	//DELETE Action Listener 
 	private class DeleteButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -944,13 +938,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-//	//PUTTING THE TABLE SHIT INTO REFRESH 
-//	private String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
-//	private Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
-//	private JTable administratorTable = new JTable(administratorData, administratorHeader);
-//	private JScrollPane administratorScroll = new JScrollPane(administratorTable);
-	
+	//REFRESH Action Listener 
 	private class RefreshButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
