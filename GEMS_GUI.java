@@ -571,9 +571,12 @@ public class GEMS_GUI
 	
 	//Create Entry ADMINISTRATOR
 	private JOptionPane createAdminEntryPopUp = new JOptionPane("CREATE ADMIN ENTRY");
-	private JTextField createAdminForename = new JTextField("Forename...");
-	private JTextField createAdminSurname = new JTextField("Surname...");
-	private JTextField createAdminPhoneNo = new JTextField("Phone Number...");
+	private JLabel createAdminForenameLabel = new JLabel("Forename:");
+	private JTextField createAdminForename = new JTextField();
+	private JLabel createAdminSurnameLabel = new JLabel("Surname:");
+	private JTextField createAdminSurname = new JTextField();
+	private JLabel createAdminPhoneNoLabel = new JLabel("Phone Number:");
+	private JTextField createAdminPhoneNo = new JTextField();
 	private class CreateAdministratorButtonActionHandler implements ActionListener
 	{
 	    public void actionPerformed(ActionEvent event)
@@ -582,11 +585,20 @@ public class GEMS_GUI
 	        {	   
 	            gems.add(createAdminEntryPopUp);
 
-	            createAdminEntryPopUp.setLayout(new GridLayout(3,2));
+	            createAdminEntryPopUp.setLayout(new GridLayout(2,3));
 
+	            
+	        	createAdminEntryPopUp.add(createAdminForenameLabel);
+	        	createAdminEntryPopUp.add(createAdminSurnameLabel);
+	        	createAdminEntryPopUp.add(createAdminPhoneNoLabel);
+	        	
 	            createAdminEntryPopUp.add(createAdminForename);
 	            createAdminEntryPopUp.add(createAdminSurname);
 	            createAdminEntryPopUp.add(createAdminPhoneNo);
+	            
+
+
+
 
 	            int result = JOptionPane.showConfirmDialog(null, createAdminEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
@@ -611,11 +623,15 @@ public class GEMS_GUI
 
 	    }
 	}
+	
 	//Create Entry ACCOUNT MANAGER 
 	private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
-	private JTextField createAccountForename = new JTextField("Forename...");
-	private JTextField createAccountSurname = new JTextField("Surname...");
-	private JTextField createAccountPhoneNo = new JTextField("Phone Number...");
+	private JLabel createAccountForenameLabel = new JLabel("Forename:");
+	private JTextField createAccountForename = new JTextField();
+	private JLabel createAccountSurnameLabel = new JLabel("Surname:");
+	private JTextField createAccountSurname = new JTextField();
+	private JLabel createAccountPhoneNoLabel = new JLabel("Phone Number:");
+	private JTextField createAccountPhoneNo = new JTextField();
 	private class CreateAccountManagerButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -624,7 +640,13 @@ public class GEMS_GUI
 			{
 	            gems.add(createAccountEntryPopUp);
 
-	            createAccountEntryPopUp.setLayout(new GridLayout(3,2));
+	            createAccountEntryPopUp.setLayout(new GridLayout(2,3));
+	            
+	            createAccountEntryPopUp.add(createAccountForenameLabel);
+	            createAccountEntryPopUp.add(createAccountSurnameLabel);
+	            createAccountEntryPopUp.add(createAccountPhoneNoLabel);
+
+	            
 
 	            createAccountEntryPopUp.add(createAccountForename);
 	            createAccountEntryPopUp.add(createAccountSurname);
@@ -652,15 +674,23 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
 	//Create Entry CLIENT 
 	private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
-	private JTextField createClientCompanyName = new JTextField("Company Name...");
-	private JTextField createClientAddress = new JTextField("Address...");
-	private JTextField createClientAccountManID = new JTextField("Account Manager ID...");
-	private JTextField createClientForename = new JTextField("Contact Forename...");
-	private JTextField createClientSurname = new JTextField("Contact Surname...");
-	private JTextField createClientEmail = new JTextField("Contact Email...");
-	private JTextField createClientPhoneNo = new JTextField("Contact Phone Number...");
+	private JLabel createClientCompanyNameLabel = new JLabel("Company Name:");
+	private JTextField createClientCompanyName = new JTextField();
+	private JLabel createClientAddressLabel = new JLabel("Address:");
+	private JTextField createClientAddress = new JTextField();
+	private JLabel createClientAccountManIDLabel = new JLabel("Account Manager ID:");
+	private JTextField createClientAccountManID = new JTextField();
+	private JLabel createClientContactForenameLabel = new JLabel("Contact Forename:");
+	private JTextField createClientForename = new JTextField();
+	private JLabel createClientContactSurnameLabel = new JLabel("Contact Surname:");
+	private JTextField createClientSurname = new JTextField();
+	private JLabel createClientContactEmailLabel = new JLabel("Contact Email:");
+	private JTextField createClientEmail = new JTextField();
+	private JLabel createClientContactPhoneNoLabel = new JLabel("Contact Phone Number:");
+	private JTextField createClientPhoneNo = new JTextField();
 	private class CreateClientButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -669,8 +699,17 @@ public class GEMS_GUI
 			{
 	            gems.add(createClientEntryPopUp);
 
-	            createClientEntryPopUp.setLayout(new GridLayout(3,2));
+	            createClientEntryPopUp.setLayout(new GridLayout(2,3));
 
+	            createClientEntryPopUp.add(createClientCompanyNameLabel);
+	            createClientEntryPopUp.add(createClientAddressLabel);
+	            createClientEntryPopUp.add(createClientAccountManIDLabel);
+	            createClientEntryPopUp.add(createClientContactForenameLabel);
+	            createClientEntryPopUp.add(createClientContactSurnameLabel);
+	            createClientEntryPopUp.add(createClientContactEmailLabel);
+	            createClientEntryPopUp.add(createClientContactPhoneNoLabel);
+
+	            
 	            createClientEntryPopUp.add(createClientCompanyName);
 	            createClientEntryPopUp.add(createClientAddress);
 	            createClientEntryPopUp.add(createClientAccountManID);
@@ -710,15 +749,23 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
 	//Create Entry ORDER
 	private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
-	private JTextField createOrderClientID = new JTextField("Client ID...");
-	private JTextField createOrderAccountManID = new JTextField("Account Manager ID...");
-	private JTextField createOrderAdminID = new JTextField("Administrator ID...");
-	private JTextField createOrderItemID = new JTextField("Item ID...");
-	private JTextField createOrderQuantity = new JTextField("Quantity...");
-	private JTextField createOrderSupplierID = new JTextField("Supplier ID...");
-	private JTextField createOrderDeliveryAddress = new JTextField("Delivery Address...");
+	private JLabel createOrderClientIDLabel = new JLabel("Client ID:");
+	private JTextField createOrderClientID = new JTextField();
+	private JLabel createOrderAccountManIDLabel = new JLabel("Account Manager ID:");
+	private JTextField createOrderAccountManID = new JTextField();
+	private JLabel createOrderAdminIDLabel = new JLabel("Administrator ID:");
+	private JTextField createOrderAdminID = new JTextField();
+	private JLabel createOrderItemIDLabel = new JLabel("Item ID:");
+	private JTextField createOrderItemID = new JTextField();
+	private JLabel createOrderQuantityLabel = new JLabel("Quantity:");
+	private JTextField createOrderQuantity = new JTextField();
+	private JLabel createOrderSupplierIDLabel = new JLabel("Supplier ID:");
+	private JTextField createOrderSupplierID = new JTextField();
+	private JLabel createOrderDeliveryAddressLabel = new JLabel("Delivery Address:");
+	private JTextField createOrderDeliveryAddress = new JTextField();
 	private class CreateOrderButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -727,7 +774,18 @@ public class GEMS_GUI
 			{
 	            gems.add(createOrderEntryPopUp);
 
-	            createOrderEntryPopUp.setLayout(new GridLayout(3,2));
+	            createOrderEntryPopUp.setLayout(new GridLayout(2,3));
+	            
+	            createOrderEntryPopUp.add(createOrderClientIDLabel);
+	            createOrderEntryPopUp.add(createOrderAccountManIDLabel);
+	            createOrderEntryPopUp.add(createOrderAdminIDLabel);
+	            createOrderEntryPopUp.add(createOrderItemIDLabel);
+	            createOrderEntryPopUp.add(createOrderQuantityLabel);
+	            createOrderEntryPopUp.add(createOrderSupplierIDLabel);
+	            createOrderEntryPopUp.add(createOrderDeliveryAddressLabel);
+
+
+
 
 	            createOrderEntryPopUp.add(createOrderClientID);
 	            createOrderEntryPopUp.add(createOrderAccountManID);
@@ -779,12 +837,17 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
 	//Create Entry ITEM
 	private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
-	private JTextField createItemDescription = new JTextField("Description...");
-	private JTextField createItemSupplierID = new JTextField("Supplier ID...");
-	private JTextField createItemBuyPrice = new JTextField("Buy Price...");
-	private JTextField createItemSellPrice = new JTextField("Sell Price....");
+	private JLabel createItemDescriptionLabel = new JLabel("Description:");
+	private JTextField createItemDescription = new JTextField();
+	private JLabel createItemSupplierIDLabel = new JLabel("Supplier ID:");
+	private JTextField createItemSupplierID = new JTextField();
+	private JLabel createItemBuyPriceLabel = new JLabel("Buy Price:");
+	private JTextField createItemBuyPrice = new JTextField();
+	private JLabel createItemSellPriceLabel = new JLabel("Sell Price:");
+	private JTextField createItemSellPrice = new JTextField();
 	private class CreateItemButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -793,7 +856,12 @@ public class GEMS_GUI
 			{
 	            gems.add(createItemEntryPopUp);
 
-	            createItemEntryPopUp.setLayout(new GridLayout(3,2));
+	            createItemEntryPopUp.setLayout(new GridLayout(2,3));
+	            
+	            createItemEntryPopUp.add(createItemDescriptionLabel);
+	            createItemEntryPopUp.add(createItemSupplierIDLabel);
+	            createItemEntryPopUp.add(createItemBuyPriceLabel);
+	            createItemEntryPopUp.add(createItemSellPriceLabel);
 
 	            createItemEntryPopUp.add(createItemDescription);
 	            createItemEntryPopUp.add(createItemSupplierID);
@@ -829,14 +897,21 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
 	//Create Entry SUPPLIER
 	private JOptionPane createSupplierEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
-	private JTextField createSupplierCompanyName = new JTextField("Company Name...");
-	private JTextField createSupplierAddress = new JTextField("Address...");
-	private JTextField createSupplierForename = new JTextField("Contact Forename...");
-	private JTextField createSupplierSurname = new JTextField("Contact Surname...");
-	private JTextField createSupplierEmail = new JTextField("Contact Email...");
-	private JTextField createSupplierPhoneNo = new JTextField("Contact Phone Number...");
+	private JTextField createSupplierCompanyName = new JTextField();
+	private JLabel createSupplierCompanyNameLabel = new JLabel("Company Name:");
+	private JTextField createSupplierAddress = new JTextField();
+	private JLabel createSupplierAddressLabel = new JLabel("Address: ");
+	private JTextField createSupplierForename = new JTextField();
+	private JLabel createSupplierForenameLabel = new JLabel("Contact Forename:");
+	private JTextField createSupplierSurname = new JTextField();
+	private JLabel createSupplierSurnameLabel = new JLabel("Contact Surname: ");
+	private JTextField createSupplierEmail = new JTextField();
+	private JLabel createSupplierEmailLabel = new JLabel("Email: ");
+	private JTextField createSupplierPhoneNo = new JTextField();
+	private JLabel createSupplierPhoneNoLabel = new JLabel("Phone Number: ");
 	private class CreateSupplierButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -845,7 +920,14 @@ public class GEMS_GUI
 			{
 	            gems.add(createSupplierEntryPopUp);
 
-	            createSupplierEntryPopUp.setLayout(new GridLayout(3,2));
+	            createSupplierEntryPopUp.setLayout(new GridLayout(2,3));
+	            
+	            createSupplierEntryPopUp.add(createSupplierCompanyNameLabel);
+	            createSupplierEntryPopUp.add(createSupplierAddressLabel);
+	            createSupplierEntryPopUp.add(createSupplierForenameLabel);
+	            createSupplierEntryPopUp.add(createSupplierSurnameLabel);
+	            createSupplierEntryPopUp.add(createSupplierEmailLabel);
+	            createSupplierEntryPopUp.add(createSupplierPhoneNoLabel);
 
 	            createSupplierEntryPopUp.add(createSupplierCompanyName);
 	            createSupplierEntryPopUp.add(createSupplierAddress);
