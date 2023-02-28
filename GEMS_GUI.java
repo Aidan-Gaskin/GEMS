@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 public class GEMS_GUI 
 {
 	//Main Frame 
@@ -16,7 +15,6 @@ public class GEMS_GUI
 					private JMenu gemsHELP = new JMenu("Help");
 					private JMenuItem tbcItem3 = new JMenuItem("TBC");
 					private JMenuItem tbcItem4 = new JMenuItem("TBC");
-					
 		//Required Buttons
 		private JButton viewItems = new JButton("View: Item");
 		private JButton viewClients = new JButton("View: Client");
@@ -24,13 +22,10 @@ public class GEMS_GUI
 		private JButton viewAccountManagers = new JButton("View: AccountManager");
 		private JButton viewSuppliers = new JButton("View: Supplier");
 		private JButton viewOrders = new JButton("View: Order");
-		
 		//Required Panels 
 		private JPanel westPanel = new JPanel();//add the buttons to
 		private JPanel centerPanel = new JPanel();//the blank square
 		private JPanel centerSouth = new JPanel();//CUD buttons 
-		
-		
 	//Buttons Used In All View Frames
 		private JButton createEntryAdministrator = new JButton("Create Entry");
 		private JButton createEntryAccountManager = new JButton("Create Entry");
@@ -38,105 +33,68 @@ public class GEMS_GUI
 		private JButton createEntryItem = new JButton("Create Entry");
 		private JButton createEntryOrder = new JButton("Create Entry");
 		private JButton createEntrySupplier = new JButton("Create Entry");
-		
 		private JButton updateEntry = new JButton("Update Entry");
 		private JButton deleteEntry = new JButton("Delete Entry");
 		private JButton refresh = new JButton("Refresh");
-		
-	
 		//GEMS for Data Operations 
 		private GEMS y = new GEMS();
-		
-		//--------------------
-		
 		//Individual Database Tables 
 		//Item
 		private String[] itemHeader = {"itemID","description","supplierID","buyPrice","sellPrice"};
 		private Object[][] itemData = y.retrieveSelectedTableObject("Item");
 		private JTable itemTable = new JTable(itemData, itemHeader);
 		private JScrollPane itemScroll = new JScrollPane(itemTable);
-		
 		//Client
 		private String[] clientHeader = {"clientID","companyName","address","accountManagerID","contactForename"
 				,"contactSurname","contactEmail","contactPhoneNo"};
 		private Object[][] clientData = y.retrieveSelectedTableObject("Client");
 		private JTable clientTable = new JTable(clientData, clientHeader);
 		private JScrollPane clientScroll = new JScrollPane(clientTable);
-		
 		//Account Manager
 		private String[] accountManagerHeader = {"AccountManID","forename","surname","phoneNumber"};
 		private Object[][] accountManagerData = y.retrieveSelectedTableObject("AccountManager");
 		private JTable accountManagerTable = new JTable(accountManagerData, accountManagerHeader);
 		private JScrollPane accountManagerScroll = new JScrollPane(accountManagerTable);
-		
 		//Administrator
 		private String[] administratorHeader = {"adminID","forename","surname","phoneNo"};
 		private Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
 		private JTable administratorTable = new JTable(administratorData, administratorHeader);
 		private JScrollPane administratorScroll = new JScrollPane(administratorTable);
-		
 		//Order
 		private String[] orderHeader = {"orderID","clientID","accountManID","adminID",
 				"itemID","quantity","supplierID","deliveryAddress"};
 		private Object[][] orderData = y.retrieveSelectedTableObject("Order");
 		private JTable orderTable = new JTable(orderData, orderHeader);
 		private JScrollPane orderScroll = new JScrollPane(orderTable);
-		
 		//Supplier
 		private String[] supplierHeader = {"supplierID","companyName","address","contactForename"
 				,"contactSurname","contactEmail","contactPhoneNo"};
 		private Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
 		private JTable supplierTable = new JTable(supplierData, supplierHeader);
 		private JScrollPane supplierScroll = new JScrollPane(supplierTable);
-
-
-		
 		//intRefres - attached to the view handlers to allow manipulation on specific view page 
 		public int intRefresh;
-		
-		
-		
-		
-		
-		
 	//constructor 
 	public static void main(String[] args)
 	{
 		GEMS_GUI x = new GEMS_GUI();
 		GEMS y = new GEMS();
 	}
-	
-	
-	
-	
-	
-	
 	//build GUI
 	public GEMS_GUI()
 	{
 		makeHomeFrame();
 		makeMenu();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//Home Frame
 	public void makeHomeFrame()
 	{
 		//Layout 
 		gems.setLayout(new BorderLayout());
-		
 		//Panels To Be Used
 		gems.add(westPanel, BorderLayout.WEST);//View Buttons Go In This Panel
 		centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));//Outlining Panel
 		gems.add(centerPanel, BorderLayout.CENTER);//Table Views Go Here
-		
 		//West Panel Configuration
 		westPanel.setLayout(new GridLayout(6,1));
 			westPanel.add(viewItems);
@@ -152,22 +110,15 @@ public class GEMS_GUI
 			westPanel.add(viewSuppliers);
 				viewSuppliers.addActionListener(new viewSuppliersHandler());
 		westPanel.setBackground(Color.BLACK);
-				
 		//Centre Panel Configuration 
 		centerPanel.setLayout(new BorderLayout());
 			centerPanel.add(centerSouth, BorderLayout.SOUTH);
 				centerSouth.setLayout(new GridLayout(1,4));
 					centerSouth.setBackground(Color.BLACK);
-		
 		//Frame Packed and Visible
 		gems.pack();
 		gems.setVisible(true);
 	}
-	
-	
-	
-	
-	
 	//Menu Bar
 	public void makeMenu()
 	{
@@ -182,16 +133,6 @@ public class GEMS_GUI
 			gemsHELP.add(tbcItem3);
 			gemsHELP.add(tbcItem4);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//*****************************ACTION LISTENERS*****************************
 	//View Items Listener
 	public class viewItemsHandler implements ActionListener
@@ -200,17 +141,13 @@ public class GEMS_GUI
 		{
 			try
 			{				
-				//Removes Duplicate Tables
 				centerPanel.revalidate();
 				centerPanel.remove(clientScroll);
 				centerPanel.remove(administratorScroll);
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
-				//
 				centerPanel.remove(itemScroll);
-				
-				//Removes Duplicate Buttons
 				centerSouth.remove(createEntryItem);
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
@@ -220,9 +157,6 @@ public class GEMS_GUI
 				centerSouth.remove(refresh);
 				centerSouth.remove(updateEntry);
 				centerSouth.remove(deleteEntry);
-				
-
-				//Creating The Layout & Implementing Action Listeners
 				centerPanel.add(itemScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryItem);
 					createEntryItem.setPreferredSize(new Dimension(145,145));
@@ -233,22 +167,16 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				
-				//new additions below - @11:19
 				String[] itemHeader = {"itemID","description","supplierID","buyPrice",
 						"sellPrice"};
 				Object[][] itemData = y.retrieveSelectedTableObject("Item");
 				JTable itemTable = new JTable(itemData, itemHeader);
 				JScrollPane itemScroll = new JScrollPane(itemTable);
-				
 				centerPanel.add(itemScroll, BorderLayout.CENTER);	
-				
-				//int refresh experimental feature 
 				intRefresh = 1;
 			}
 			catch(Exception e)
 			{
-				//create a pop up here?? idk yet 
 				e.printStackTrace(); 
 			}
 		}
@@ -266,10 +194,7 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
-				
-				//removing old version if exists -- to then be added again 
 				centerSouth.remove(clientScroll);
-				
 				centerSouth.remove(createEntryOrder);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryItem);
@@ -278,7 +203,6 @@ public class GEMS_GUI
 				centerSouth.remove(refresh);
 				centerSouth.remove(updateEntry);
 				centerSouth.remove(deleteEntry);
-
 				centerPanel.add(clientScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryClient);
 					createEntryClient.setPreferredSize(new Dimension(145,145));
@@ -289,22 +213,16 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-
-					//new additions below - @11:19
 					String[] clientHeader = {"clientID","companyName","address","accountManagerID",
 							"contactForename", "contactSurname", "contactEmail", "contactPhoneNo"};
 					Object[][] clientData = y.retrieveSelectedTableObject("Client");
 					JTable clientTable = new JTable(clientData, clientHeader);
 					JScrollPane clientScroll = new JScrollPane(clientTable);
-					
 					centerPanel.add(clientScroll, BorderLayout.CENTER);	
-					
-				//int refresh experimental feature 
 				intRefresh = 2;
 			}
 			catch(Exception e)
 			{
-				//create a pop up here?? idk yet 
 				e.printStackTrace();
 			}
 		}
@@ -322,10 +240,7 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
-				
-				//removing old version if exists -- to then be added again 
 				centerSouth.remove(administratorScroll);
-				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryItem);
@@ -334,7 +249,6 @@ public class GEMS_GUI
 				centerSouth.remove(refresh);
 				centerSouth.remove(updateEntry);
 				centerSouth.remove(deleteEntry);
-
 				centerPanel.add(administratorScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryAdministrator);
 					createEntryAdministrator.setPreferredSize(new Dimension(145,145));
@@ -345,18 +259,11 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-
-					
-					
-					
-					//new additions below - @11:19
 					String[] administratorHeader = {"adminID","forename","surname","phoneNo"};
 					Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
 					JTable administratorTable = new JTable(administratorData, administratorHeader);
 					JScrollPane administratorScroll = new JScrollPane(administratorTable);
-					
 					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
-					//int refresh experimental feature 
 					intRefresh = 3;
 			}
 			catch(Exception e)
@@ -378,10 +285,7 @@ public class GEMS_GUI
 				centerPanel.remove(itemScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(orderScroll);
-				
-				//
 				centerSouth.remove(accountManagerScroll);
-				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryItem);
@@ -390,7 +294,6 @@ public class GEMS_GUI
 				centerSouth.remove(refresh);
 				centerSouth.remove(updateEntry);
 				centerSouth.remove(deleteEntry);
-				
 				centerPanel.add(accountManagerScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryAccountManager);
 					createEntryAccountManager.setPreferredSize(new Dimension(145,145));
@@ -401,17 +304,11 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-
-					//Views latest version of table 
 					String[] accountHeader = {"accountManID","forename","surname","phoneNo"};
 					Object[][] accountData = y.retrieveSelectedTableObject("AccountManager");
 					JTable accountTable = new JTable(accountData, accountHeader);
 					JScrollPane accountScroll = new JScrollPane(accountTable);
-					
 					centerPanel.add(accountScroll, BorderLayout.CENTER);		
-					
-					
-				//int refresh experimental feature 
 				intRefresh = 4;
 				
 			}
@@ -434,10 +331,7 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(itemScroll);
 				centerPanel.remove(orderScroll);
-				
-				//
 				centerPanel.remove(supplierScroll);
-				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntryOrder);
 				centerSouth.remove(createEntryItem);
@@ -446,7 +340,6 @@ public class GEMS_GUI
 				centerSouth.remove(refresh);
 				centerSouth.remove(updateEntry);
 				centerSouth.remove(deleteEntry);
-				
 				centerPanel.add(supplierScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntrySupplier);
 					createEntrySupplier.setPreferredSize(new Dimension(145,145));
@@ -457,18 +350,12 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-
-					//new additions below - @11:19
 					String[] supplierHeader = {"supplierID","companyName","address","contactForename",
 							"contactSurname", "contactEmail", "contactPhoneNo"};
 					Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
 					JTable supplierTable = new JTable(supplierData, supplierHeader);
 					JScrollPane supplierScroll = new JScrollPane(supplierTable);
-					
 					centerPanel.add(supplierScroll, BorderLayout.CENTER);		
-					
-					
-				//int refresh experimental feature 
 				intRefresh = 5;
 
 			}
@@ -491,10 +378,7 @@ public class GEMS_GUI
 				centerPanel.remove(accountManagerScroll);
 				centerPanel.remove(supplierScroll);
 				centerPanel.remove(itemScroll);
-				
-				//
 				centerPanel.remove(orderScroll);
-				
 				centerSouth.remove(createEntryClient);
 				centerSouth.remove(createEntrySupplier);
 				centerSouth.remove(createEntryItem);
@@ -503,9 +387,6 @@ public class GEMS_GUI
 				centerSouth.remove(refresh);
 				centerSouth.remove(updateEntry);
 				centerSouth.remove(deleteEntry);
-				
-				
-
 				centerPanel.add(orderScroll, BorderLayout.CENTER);
 				centerSouth.add(createEntryOrder);
 					createEntryOrder.setPreferredSize(new Dimension(145,145));
@@ -516,17 +397,12 @@ public class GEMS_GUI
 					deleteEntry.addActionListener(new DeleteButtonActionHandler());
 				centerSouth.add(refresh);
 					refresh.addActionListener(new RefreshButtonActionHandler());
-				
-					//new additions below - @11:19
 					String[] orderHeader = {"orderID","clientID","accountManID","adminID",
 							"itemID", "quantity", "supplierID", "deliveryAddress"};
 					Object[][] orderData = y.retrieveSelectedTableObject("Order");
 					JTable orderTable = new JTable(orderData, orderHeader);
 					JScrollPane orderScroll = new JScrollPane(orderTable);
-					
 					centerPanel.add(orderScroll, BorderLayout.CENTER);	
-					
-				//int refresh experimental feature 
 				intRefresh = 6;
 
 			}
@@ -536,39 +412,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 	//****************************CUD ACTION LISTENERS*****************************
-	
 	//Create Entry ADMINISTRATOR
 	private JOptionPane createAdminEntryPopUp = new JOptionPane("CREATE ADMIN ENTRY");
 	private JLabel createAdminForenameLabel = new JLabel("Forename:");
@@ -577,59 +421,12 @@ public class GEMS_GUI
 	private JTextField createAdminSurname = new JTextField();
 	private JLabel createAdminPhoneNoLabel = new JLabel("Phone Number:");
 	private JTextField createAdminPhoneNo = new JTextField();
-//	private class CreateAdministratorButtonActionHandler implements ActionListener
-//	{
-//	    public void actionPerformed(ActionEvent event)
-//	    {
-//	        try
-//	        {	   
-//	            gems.add(createAdminEntryPopUp);
-//
-//	            createAdminEntryPopUp.setLayout(new GridLayout(2,3));
-//
-//	            
-//	        	createAdminEntryPopUp.add(createAdminForenameLabel);
-//	        	createAdminEntryPopUp.add(createAdminSurnameLabel);
-//	        	createAdminEntryPopUp.add(createAdminPhoneNoLabel);
-//	        	
-//	            createAdminEntryPopUp.add(createAdminForename);
-//	            createAdminEntryPopUp.add(createAdminSurname);
-//	            createAdminEntryPopUp.add(createAdminPhoneNo);
-//	            
-//
-//
-//
-//
-//	            int result = JOptionPane.showConfirmDialog(null, createAdminEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-//
-//	            if(result == JOptionPane.OK_OPTION)
-//	            {
-//	                String forename = createAdminForename.getText();
-//	                String surname = createAdminSurname.getText();
-//	                String phoneNo = createAdminPhoneNo.getText();
-//
-//	                y.createAdministratorObject(forename, surname, phoneNo);
-//
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
-//	                model.addRow(new Object[]{forename, surname, phoneNo});
-//	                model.fireTableDataChanged();
-//	            }
-//	        }
-//	        catch(Exception e)
-//	        {
-//	            e.printStackTrace();
-//	        }
-//
-//	    }
-//	}
 	private class CreateAdministratorButtonActionHandler implements ActionListener
 	{
 	    public void actionPerformed(ActionEvent event)
 	    {
 	        try
 	        {	   
-	        	
 	            JPanel messagePanel = new JPanel();
 	            messagePanel.setLayout(new GridLayout(4, 2));
 	            messagePanel.add(createAdminForenameLabel);
@@ -638,19 +435,13 @@ public class GEMS_GUI
 	            messagePanel.add(createAdminSurname);
 	            messagePanel.add(createAdminPhoneNoLabel);
 	            messagePanel.add(createAdminPhoneNo);
-
 	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Administrator", JOptionPane.OK_CANCEL_OPTION);
-
-	        	
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String forename = createAdminForename.getText();
 	                String surname = createAdminSurname.getText();
 	                String phoneNo = createAdminPhoneNo.getText();
-
 	                y.createAdministratorObject(forename, surname, phoneNo);
-
-	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
 	                model.addRow(new Object[]{forename, surname, phoneNo});
 	                model.fireTableDataChanged();
@@ -663,7 +454,6 @@ public class GEMS_GUI
 
 	    }
 	}
-	
 	//Create Entry ACCOUNT MANAGER 
 	private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
 	private JLabel createAccountForenameLabel = new JLabel("Forename:");
@@ -672,55 +462,12 @@ public class GEMS_GUI
 	private JTextField createAccountSurname = new JTextField();
 	private JLabel createAccountPhoneNoLabel = new JLabel("Phone Number:");
 	private JTextField createAccountPhoneNo = new JTextField();
-//	private class CreateAccountManagerButtonActionHandler implements ActionListener
-//	{
-//		public void actionPerformed(ActionEvent event)
-//		{
-//			try
-//			{
-//	            gems.add(createAccountEntryPopUp);
-//
-//	            createAccountEntryPopUp.setLayout(new GridLayout(2,3));
-//	            
-//	            createAccountEntryPopUp.add(createAccountForenameLabel);
-//	            createAccountEntryPopUp.add(createAccountSurnameLabel);
-//	            createAccountEntryPopUp.add(createAccountPhoneNoLabel);
-//
-//	            
-//
-//	            createAccountEntryPopUp.add(createAccountForename);
-//	            createAccountEntryPopUp.add(createAccountSurname);
-//	            createAccountEntryPopUp.add(createAccountPhoneNo);
-//
-//	            int result = JOptionPane.showConfirmDialog(null, createAccountEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-//
-//	            if(result == JOptionPane.OK_OPTION)
-//	            {
-//	                String forename = createAccountForename.getText();
-//	                String surname = createAccountSurname.getText();
-//	                String phoneNo = createAccountPhoneNo.getText();
-//
-//	                y.createAccountManagerObject(forename, surname, phoneNo);
-//
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) accountManagerTable.getModel();
-//	                model.addRow(new Object[]{forename, surname, phoneNo});
-//	                model.fireTableDataChanged();
-//	            }
-//			}
-//			catch(Exception e)
-//			{
-//				
-//			}
-//		}
-//	}
 	private class CreateAccountManagerButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-
 	            JPanel messagePanel = new JPanel();
 	            messagePanel.setLayout(new GridLayout(4, 2));
 	            messagePanel.add(createAccountForenameLabel);
@@ -729,19 +476,13 @@ public class GEMS_GUI
 	            messagePanel.add(createAccountSurname);
 	            messagePanel.add(createAccountPhoneNoLabel);
 	            messagePanel.add(createAccountPhoneNo);
-
 	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "AccountManager", JOptionPane.OK_CANCEL_OPTION);
-
-				
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String forename = createAccountForename.getText();
 	                String surname = createAccountSurname.getText();
 	                String phoneNo = createAccountPhoneNo.getText();
-
 	                y.createAccountManagerObject(forename, surname, phoneNo);
-
-	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) accountManagerTable.getModel();
 	                model.addRow(new Object[]{forename, surname, phoneNo});
 	                model.fireTableDataChanged();
@@ -753,7 +494,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
 	//Create Entry CLIENT 
 	private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
 	private JLabel createClientCompanyNameLabel = new JLabel("Company Name:");
@@ -770,71 +510,12 @@ public class GEMS_GUI
 	private JTextField createClientEmail = new JTextField();
 	private JLabel createClientContactPhoneNoLabel = new JLabel("Contact Phone Number:");
 	private JTextField createClientPhoneNo = new JTextField();
-//	private class CreateClientButtonActionHandler implements ActionListener
-//	{
-//		public void actionPerformed(ActionEvent event)
-//		{
-//			try
-//			{
-//	            gems.add(createClientEntryPopUp);
-//
-//	            createClientEntryPopUp.setLayout(new GridLayout(2,3));
-//
-//	            createClientEntryPopUp.add(createClientCompanyNameLabel);
-//	            createClientEntryPopUp.add(createClientAddressLabel);
-//	            createClientEntryPopUp.add(createClientAccountManIDLabel);
-//	            createClientEntryPopUp.add(createClientContactForenameLabel);
-//	            createClientEntryPopUp.add(createClientContactSurnameLabel);
-//	            createClientEntryPopUp.add(createClientContactEmailLabel);
-//	            createClientEntryPopUp.add(createClientContactPhoneNoLabel);
-//
-//	            
-//	            createClientEntryPopUp.add(createClientCompanyName);
-//	            createClientEntryPopUp.add(createClientAddress);
-//	            createClientEntryPopUp.add(createClientAccountManID);
-//	            createClientEntryPopUp.add(createClientForename);
-//	            createClientEntryPopUp.add(createClientSurname);
-//	            createClientEntryPopUp.add(createClientEmail);
-//	            createClientEntryPopUp.add(createClientPhoneNo);
-//
-//
-//
-//	            int result = JOptionPane.showConfirmDialog(null, createClientEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-//
-//	            if(result == JOptionPane.OK_OPTION)
-//	            {
-//	            	String companyName = createClientCompanyName.getText();
-//	            	String address = createClientAddress.getText();
-//	            	String accountManagerID = createClientAccountManID.getText();//not sure if will work
-//	                String forename = createClientForename.getText();
-//	                String surname = createClientSurname.getText();
-//	                String email = createClientEmail.getText();
-//	                String phoneNo = createClientPhoneNo.getText();
-//	                
-//	                int accountManagerIDInt = Integer.parseInt(accountManagerID);
-//
-//
-//	                y.createClientObject(companyName,address,accountManagerIDInt,forename,surname,email,phoneNo);
-//
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) clientTable.getModel();
-//	                model.addRow(new Object[]{companyName, address, accountManagerIDInt, forename, surname, email, phoneNo});
-//	                model.fireTableDataChanged();
-//	            }
-//			}
-//			catch(Exception e)
-//			{
-//				
-//			}
-//		}
-//	}
 	private class CreateClientButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-
 	            JPanel messagePanel = new JPanel();
 	            messagePanel.setLayout(new GridLayout(4, 2));
 	            messagePanel.add(createClientCompanyNameLabel);
@@ -851,12 +532,7 @@ public class GEMS_GUI
 	            messagePanel.add(createClientEmail);
 	            messagePanel.add(createClientContactPhoneNoLabel);
 	            messagePanel.add(createClientPhoneNo);
-
-
-
-
 	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Client", JOptionPane.OK_CANCEL_OPTION);
-
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	            	String companyName = createClientCompanyName.getText();
@@ -866,13 +542,8 @@ public class GEMS_GUI
 	                String surname = createClientSurname.getText();
 	                String email = createClientEmail.getText();
 	                String phoneNo = createClientPhoneNo.getText();
-	                
 	                int accountManagerIDInt = Integer.parseInt(accountManagerID);
-
-
 	                y.createClientObject(companyName,address,accountManagerIDInt,forename,surname,email,phoneNo);
-
-	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) clientTable.getModel();
 	                model.addRow(new Object[]{companyName, address, accountManagerIDInt, forename, surname, email, phoneNo});
 	                model.fireTableDataChanged();
@@ -884,7 +555,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
 	//Create Entry ORDER
 	private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
 	private JLabel createOrderClientIDLabel = new JLabel("Client ID:");
@@ -901,77 +571,6 @@ public class GEMS_GUI
 	private JTextField createOrderSupplierID = new JTextField();
 	private JLabel createOrderDeliveryAddressLabel = new JLabel("Delivery Address:");
 	private JTextField createOrderDeliveryAddress = new JTextField();
-//	private class CreateOrderButtonActionHandler implements ActionListener
-//	{
-//		public void actionPerformed(ActionEvent event)
-//		{
-//			try
-//			{
-//	            gems.add(createOrderEntryPopUp);
-//
-//	            createOrderEntryPopUp.setLayout(new GridLayout(2,3));
-//	            
-//	            createOrderEntryPopUp.add(createOrderClientIDLabel);
-//	            createOrderEntryPopUp.add(createOrderAccountManIDLabel);
-//	            createOrderEntryPopUp.add(createOrderAdminIDLabel);
-//	            createOrderEntryPopUp.add(createOrderItemIDLabel);
-//	            createOrderEntryPopUp.add(createOrderQuantityLabel);
-//	            createOrderEntryPopUp.add(createOrderSupplierIDLabel);
-//	            createOrderEntryPopUp.add(createOrderDeliveryAddressLabel);
-//
-//
-//
-//
-//	            createOrderEntryPopUp.add(createOrderClientID);
-//	            createOrderEntryPopUp.add(createOrderAccountManID);
-//	            createOrderEntryPopUp.add(createOrderAdminID);
-//	            createOrderEntryPopUp.add(createOrderItemID);
-//	            createOrderEntryPopUp.add(createOrderQuantity);
-//	            createOrderEntryPopUp.add(createOrderSupplierID);
-//	            createOrderEntryPopUp.add(createOrderDeliveryAddress);
-//
-//
-//
-//	            int result = JOptionPane.showConfirmDialog(null, createOrderEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-//
-//                System.out.println("HEREHERHERHERHERHEHREHREHREHRE");
-//
-//	            if(result == JOptionPane.OK_OPTION)
-//	            {
-//	                String clientID = createOrderClientID.getText();
-//	                String accountManID = createOrderAccountManID.getText();
-//	                String adminID = createOrderAdminID.getText();
-//	                String itemID = createOrderItemID.getText();
-//	                String quantity = createOrderQuantity.getText();
-//	                String supplierID = createOrderSupplierID.getText();
-//	                String deliveryAddress = createOrderDeliveryAddress.getText();
-//
-//	                int clientIDInt = Integer.parseInt(clientID);
-//	                int accountManIDInt = Integer.parseInt(accountManID);
-//	                int adminIDInt = Integer.parseInt(adminID);
-//	                int itemIDInt = Integer.parseInt(itemID);
-//	                int quantityInt = Integer.parseInt(quantity);
-//	                int supplierIDInt = Integer.parseInt(supplierID);
-//
-//
-//
-//
-//	                y.createOrderObject(clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
-//	                		quantityInt, supplierIDInt, deliveryAddress);
-//
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
-//	                model.addRow(new Object[]{clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
-//	                		quantityInt, supplierIDInt, deliveryAddress});
-//	                model.fireTableDataChanged();
-//	            }
-//			}
-//			catch(Exception e)
-//			{
-//				
-//			}
-//		}
-//	}
 	private class CreateOrderButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -994,12 +593,7 @@ public class GEMS_GUI
 	            messagePanel.add(createOrderSupplierID);
 	            messagePanel.add(createOrderDeliveryAddressLabel);
 	            messagePanel.add(createOrderDeliveryAddress);
-
-
-	            
-
 	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Order", JOptionPane.OK_CANCEL_OPTION);
-
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String clientID = createOrderClientID.getText();
@@ -1009,21 +603,14 @@ public class GEMS_GUI
 	                String quantity = createOrderQuantity.getText();
 	                String supplierID = createOrderSupplierID.getText();
 	                String deliveryAddress = createOrderDeliveryAddress.getText();
-
 	                int clientIDInt = Integer.parseInt(clientID);
 	                int accountManIDInt = Integer.parseInt(accountManID);
 	                int adminIDInt = Integer.parseInt(adminID);
 	                int itemIDInt = Integer.parseInt(itemID);
 	                int quantityInt = Integer.parseInt(quantity);
 	                int supplierIDInt = Integer.parseInt(supplierID);
-
-
-
-
 	                y.createOrderObject(clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
 	                		quantityInt, supplierIDInt, deliveryAddress);
-
-	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
 	                model.addRow(new Object[]{clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
 	                		quantityInt, supplierIDInt, deliveryAddress});
@@ -1036,7 +623,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
 	//Create Entry ITEM
 	private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
 	private JLabel createItemDescriptionLabel = new JLabel("Description:");
@@ -1047,55 +633,6 @@ public class GEMS_GUI
 	private JTextField createItemBuyPrice = new JTextField();
 	private JLabel createItemSellPriceLabel = new JLabel("Sell Price:");
 	private JTextField createItemSellPrice = new JTextField();
-//	private class CreateItemButtonActionHandler implements ActionListener
-//	{
-//		public void actionPerformed(ActionEvent event)
-//		{
-//			try
-//			{
-//	            gems.add(createItemEntryPopUp);
-//
-//	            createItemEntryPopUp.setLayout(new GridLayout(2,3));
-//	            
-//	            createItemEntryPopUp.add(createItemDescriptionLabel);
-//	            createItemEntryPopUp.add(createItemSupplierIDLabel);
-//	            createItemEntryPopUp.add(createItemBuyPriceLabel);
-//	            createItemEntryPopUp.add(createItemSellPriceLabel);
-//
-//	            createItemEntryPopUp.add(createItemDescription);
-//	            createItemEntryPopUp.add(createItemSupplierID);
-//	            createItemEntryPopUp.add(createItemBuyPrice);
-//	            createItemEntryPopUp.add(createItemSellPrice);
-//
-//
-//	            int result = JOptionPane.showConfirmDialog(null, createItemEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-//
-//	            if(result == JOptionPane.OK_OPTION)
-//	            {
-//	                String description = createItemDescription.getText();
-//	                String supplierID = createItemSupplierID.getText();
-//	                String buyPrice = createItemBuyPrice.getText();
-//	                String sellPrice = createItemSellPrice.getText();
-//	                
-//	                int itemSupplierIDInt = Integer.parseInt(supplierID);
-//	                double buyPriceDouble = Double.parseDouble(buyPrice);
-//	                double sellPriceDouble = Double.parseDouble(sellPrice);
-//
-//
-//	                y.createItemObject(description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble);
-//
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
-//	                model.addRow(new Object[]{description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble});
-//	                model.fireTableDataChanged();
-//	            }
-//			}
-//			catch(Exception e)
-//			{
-//				
-//			}
-//		}
-//	}
 	private class CreateItemButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -1112,24 +649,17 @@ public class GEMS_GUI
 	            messagePanel.add(createItemBuyPrice);
 	            messagePanel.add(createItemSellPriceLabel);
 	            messagePanel.add(createItemSellPrice);
-
 	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Item", JOptionPane.OK_CANCEL_OPTION);
-
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String description = createItemDescription.getText();
 	                String supplierID = createItemSupplierID.getText();
 	                String buyPrice = createItemBuyPrice.getText();
 	                String sellPrice = createItemSellPrice.getText();
-	                
 	                int itemSupplierIDInt = Integer.parseInt(supplierID);
 	                double buyPriceDouble = Double.parseDouble(buyPrice);
 	                double sellPriceDouble = Double.parseDouble(sellPrice);
-
-
 	                y.createItemObject(description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble);
-
-	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
 	                model.addRow(new Object[]{description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble});
 	                model.fireTableDataChanged();
@@ -1141,7 +671,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-
 	//Create Entry SUPPLIER
 	private JOptionPane createSupplierEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
 	private JTextField createSupplierCompanyName = new JTextField();
@@ -1156,65 +685,12 @@ public class GEMS_GUI
 	private JLabel createSupplierEmailLabel = new JLabel("Email: ");
 	private JTextField createSupplierPhoneNo = new JTextField();
 	private JLabel createSupplierPhoneNoLabel = new JLabel("Phone Number: ");
-//	private class CreateSupplierButtonActionHandler implements ActionListener
-//	{
-//		public void actionPerformed(ActionEvent event)
-//		{
-//			try
-//			{
-//	            gems.add(createSupplierEntryPopUp);
-//
-//	            createSupplierEntryPopUp.setLayout(new GridLayout(2,3));
-//	            
-//	            createSupplierEntryPopUp.add(createSupplierCompanyNameLabel);
-//	            createSupplierEntryPopUp.add(createSupplierAddressLabel);
-//	            createSupplierEntryPopUp.add(createSupplierForenameLabel);
-//	            createSupplierEntryPopUp.add(createSupplierSurnameLabel);
-//	            createSupplierEntryPopUp.add(createSupplierEmailLabel);
-//	            createSupplierEntryPopUp.add(createSupplierPhoneNoLabel);
-//
-//	            createSupplierEntryPopUp.add(createSupplierCompanyName);
-//	            createSupplierEntryPopUp.add(createSupplierAddress);
-//	            createSupplierEntryPopUp.add(createSupplierForename);
-//	            createSupplierEntryPopUp.add(createSupplierSurname);
-//	            createSupplierEntryPopUp.add(createSupplierEmail);
-//	            createSupplierEntryPopUp.add(createSupplierPhoneNo);
-//
-//
-//
-//
-//	            int result = JOptionPane.showConfirmDialog(null, createSupplierEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-//
-//	            if(result == JOptionPane.OK_OPTION)
-//	            {
-//	                String companyName = createSupplierCompanyName.getText();
-//	                String address = createSupplierAddress.getText();
-//	                String forename = createSupplierForename.getText();
-//	                String surname = createSupplierSurname.getText();
-//	                String email = createSupplierEmail.getText();
-//	                String phoneNo = createSupplierPhoneNo.getText();
-//
-//	                y.createSupplierObject(companyName, address, forename, surname, email, phoneNo);
-//
-//	                //Update the table model
-//	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
-//	                model.addRow(new Object[]{companyName, address, forename, surname, email, phoneNo});
-//	                model.fireTableDataChanged();
-//	            }
-//			}
-//			catch(Exception e)
-//			{
-//				
-//			}
-//		}
-//	}
 	private class CreateSupplierButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-
 				JPanel messagePanel = new JPanel();
 				messagePanel.setLayout(new GridLayout(6, 2));
 				messagePanel.add(createSupplierCompanyNameLabel);
@@ -1229,9 +705,7 @@ public class GEMS_GUI
 				messagePanel.add(createSupplierEmail);
 				messagePanel.add(createSupplierPhoneNoLabel);
 				messagePanel.add(createSupplierPhoneNo);
-
 				int result = JOptionPane.showConfirmDialog(null, messagePanel, "Supplier", JOptionPane.OK_CANCEL_OPTION);
-
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String companyName = createSupplierCompanyName.getText();
@@ -1240,10 +714,7 @@ public class GEMS_GUI
 	                String surname = createSupplierSurname.getText();
 	                String email = createSupplierEmail.getText();
 	                String phoneNo = createSupplierPhoneNo.getText();
-
 	                y.createSupplierObject(companyName, address, forename, surname, email, phoneNo);
-
-	                //Update the table model
 	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
 	                model.addRow(new Object[]{companyName, address, forename, surname, email, phoneNo});
 	                model.fireTableDataChanged();
@@ -1255,45 +726,37 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//private JButton refresh = new JButton("Refresh");
-	
-	
 //Update Entry Frame 
-	private JOptionPane updateEntryPopUp = new JOptionPane("UPDATE ENTRY");
-	private JTextField updateTable = new JTextField("Table to update...");
-	private JTextField updateAttribute = new JTextField("What field?");
-	private JTextField updateNewEntry = new JTextField("New Value...");
-	private JTextField updateTablePrimaryID = new JTextField("First field(table ID)...");
-	private JTextField updateWhereValue = new JTextField("First field value(table ID value)...");
+	private JTextField updateTable = new JTextField();
+	private JLabel updateTableLabel = new JLabel("Table to update: ");
+	private JTextField updateAttribute = new JTextField();
+	private JLabel updateAttributeLabel = new JLabel("The field to update: ");
+	private JTextField updateNewEntry = new JTextField();
+	private JLabel updateNewEntryLabel = new JLabel("The New Value: ");
+	private JTextField updateTablePrimaryID = new JTextField();
+	private JLabel updateTablePrimaryIDLabel = new JLabel("First field (<table>ID): ");
+	private JTextField updateWhereValue = new JTextField();
+	private JLabel updateWhereValueLabel = new JLabel("First field value (<table>ID = ?): ");
 	//UPDATE Action Listener 
 	private class UpdateButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
-			{
-				gems.add(updateEntryPopUp);
-				
-				updateEntryPopUp.add(updateTable);
-				updateEntryPopUp.add(updateAttribute);
-				updateEntryPopUp.add(updateNewEntry);
-				updateEntryPopUp.add(updateTablePrimaryID);
-				updateEntryPopUp.add(updateWhereValue);
-
-	            int result = JOptionPane.showConfirmDialog(null, updateEntryPopUp, "UPDATE", JOptionPane.OK_CANCEL_OPTION);
-
+			{	
+				JPanel messagePanel = new JPanel();
+				messagePanel.setLayout(new GridLayout(6, 2));
+				messagePanel.add(updateTableLabel);
+				messagePanel.add(updateTable);
+				messagePanel.add(updateAttributeLabel);
+				messagePanel.add(updateAttribute);
+				messagePanel.add(updateNewEntryLabel);
+				messagePanel.add(updateNewEntry);
+				messagePanel.add(updateTablePrimaryIDLabel);
+				messagePanel.add(updateTablePrimaryID);
+				messagePanel.add(updateWhereValueLabel);
+				messagePanel.add(updateWhereValue);
+				int result = JOptionPane.showConfirmDialog(null, messagePanel, "UPDATE", JOptionPane.OK_CANCEL_OPTION);
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String table = updateTable.getText();
@@ -1301,25 +764,21 @@ public class GEMS_GUI
 	                String newEntry = updateNewEntry.getText();
 	                String tablePrimaryID = updateTablePrimaryID.getText();
 	                String whereValue = updateWhereValue.getText();
-
-
-
-
 	                y.updateEntry(table, attribute, newEntry, tablePrimaryID, whereValue);
-
 	            }
-	            
 			}
 			catch(Exception e)
 			{
-				
+				e.printStackTrace();
 			}
 		}
 	}
-	private JOptionPane deleteEntryPopUp = new JOptionPane("DELETE ENTRY");
-	private JTextField deleteTable = new JTextField("Table...");
-	private JTextField deleteAttribute = new JTextField("Attribute...");
-	private JTextField deleteValue = new JTextField("Value...");
+	private JTextField deleteTable = new JTextField();
+	private JLabel deleteTableLabel = new JLabel("Table: ");
+	private JTextField deleteAttribute = new JTextField();
+	private JLabel deleteAttributeLabel = new JLabel("Attribute: ");
+	private JTextField deleteValue = new JTextField();
+	private JLabel deleteValueLabel = new JLabel("Value: ");
 	//DELETE Action Listener 
 	private class DeleteButtonActionHandler implements ActionListener
 	{
@@ -1327,24 +786,21 @@ public class GEMS_GUI
 		{
 			try
 			{
-				gems.add(deleteEntryPopUp);
-				
-				deleteEntryPopUp.setLayout(new GridLayout(3,1));
-				
-				deleteEntryPopUp.add(deleteTable);
-				deleteEntryPopUp.add(deleteAttribute);
-				deleteEntryPopUp.add(deleteValue);
-
-	            int result = JOptionPane.showConfirmDialog(null, deleteEntryPopUp, "DELETE", JOptionPane.OK_CANCEL_OPTION);
-
+				JPanel messagePanel = new JPanel();
+				messagePanel.setLayout(new GridLayout(6, 2));
+				messagePanel.add(deleteTableLabel);
+				messagePanel.add(deleteTable);
+				messagePanel.add(deleteAttributeLabel);
+				messagePanel.add(deleteAttribute);
+				messagePanel.add(deleteValueLabel);
+				messagePanel.add(deleteValue);
+				int result = JOptionPane.showConfirmDialog(null, messagePanel, "DELETE", JOptionPane.OK_CANCEL_OPTION);
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String table = deleteTable.getText();
 	                String attribute = deleteAttribute.getText();
 	                String value = deleteValue.getText();
-
 	                y.deleteRow(table, attribute, value);
-
 	            }
 			}
 			catch(Exception e)
@@ -1376,7 +832,6 @@ public class GEMS_GUI
 					//Adding the table back to GUI 
 					centerPanel.add(itemScroll, BorderLayout.CENTER);	
 				break;
-				
 				//*****CLIENT*****
 				case 2:
 					centerPanel.revalidate();
@@ -1391,7 +846,6 @@ public class GEMS_GUI
 					//Adding the table back to GUI 
 					centerPanel.add(clientScroll, BorderLayout.CENTER);	
 				break;
-				
 				//*****ADMINISTRATOR*****
 				case 3:
 					centerPanel.revalidate();
@@ -1405,7 +859,6 @@ public class GEMS_GUI
 					//Adding the table back to GUI 
 					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
 				break;
-
 				//*****ACCOUNT MANAGER*****
 				case 4:
 					centerPanel.revalidate();
@@ -1419,7 +872,6 @@ public class GEMS_GUI
 					//Adding the table back to GUI 
 					centerPanel.add(accountManagerScroll, BorderLayout.CENTER);	
 				break;
-				
 				//*****SUPPLIER*****
 				case 5:
 					centerPanel.revalidate();
@@ -1434,7 +886,6 @@ public class GEMS_GUI
 					//Adding the table back to GUI 
 					centerPanel.add(supplierScroll, BorderLayout.CENTER);
 				break;
-
 				//*****ORDER*****
 				case 6:
 					centerPanel.revalidate();
