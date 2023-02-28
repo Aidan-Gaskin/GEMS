@@ -414,7 +414,6 @@ public class GEMS_GUI
 	}
 	//****************************CUD ACTION LISTENERS*****************************
 	//Create Entry ADMINISTRATOR
-	private JOptionPane createAdminEntryPopUp = new JOptionPane("CREATE ADMIN ENTRY");
 	private JLabel createAdminForenameLabel = new JLabel("Forename:");
 	private JTextField createAdminForename = new JTextField();
 	private JLabel createAdminSurnameLabel = new JLabel("Surname:");
@@ -455,7 +454,6 @@ public class GEMS_GUI
 	    }
 	}
 	//Create Entry ACCOUNT MANAGER 
-	private JOptionPane createAccountEntryPopUp = new JOptionPane("CREATE ACCOUNT MANAGER ENTRY");
 	private JLabel createAccountForenameLabel = new JLabel("Forename:");
 	private JTextField createAccountForename = new JTextField();
 	private JLabel createAccountSurnameLabel = new JLabel("Surname:");
@@ -495,7 +493,6 @@ public class GEMS_GUI
 		}
 	}
 	//Create Entry CLIENT 
-	private JOptionPane createClientEntryPopUp = new JOptionPane("CREATE CLIENT ENTRY");
 	private JLabel createClientCompanyNameLabel = new JLabel("Company Name:");
 	private JTextField createClientCompanyName = new JTextField();
 	private JLabel createClientAddressLabel = new JLabel("Address:");
@@ -556,7 +553,6 @@ public class GEMS_GUI
 		}
 	}
 	//Create Entry ORDER
-	private JOptionPane createOrderEntryPopUp = new JOptionPane("CREATE ORDER ENTRY");
 	private JLabel createOrderClientIDLabel = new JLabel("Client ID:");
 	private JTextField createOrderClientID = new JTextField();
 	private JLabel createOrderAccountManIDLabel = new JLabel("Account Manager ID:");
@@ -624,7 +620,6 @@ public class GEMS_GUI
 		}
 	}
 	//Create Entry ITEM
-	private JOptionPane createItemEntryPopUp = new JOptionPane("CREATE ITEM ENTRY");
 	private JLabel createItemDescriptionLabel = new JLabel("Description:");
 	private JTextField createItemDescription = new JTextField();
 	private JLabel createItemSupplierIDLabel = new JLabel("Supplier ID:");
@@ -672,7 +667,6 @@ public class GEMS_GUI
 		}
 	}
 	//Create Entry SUPPLIER
-	private JOptionPane createSupplierEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
 	private JTextField createSupplierCompanyName = new JTextField();
 	private JLabel createSupplierCompanyNameLabel = new JLabel("Company Name:");
 	private JTextField createSupplierAddress = new JTextField();
@@ -908,6 +902,4 @@ public class GEMS_GUI
 			}
 		}
 	}	
-	
-	
 }
