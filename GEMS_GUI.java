@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import gems.GEMS_GUI.RefreshButtonActionHandler;
 public class GEMS_GUI 
 {
 	//Main Frame 
@@ -173,6 +175,8 @@ public class GEMS_GUI
 				JTable itemTable = new JTable(itemData, itemHeader);
 				JScrollPane itemScroll = new JScrollPane(itemTable);
 				centerPanel.add(itemScroll, BorderLayout.CENTER);	
+                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+				refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 1;
 			}
 			catch(Exception e)
@@ -219,6 +223,8 @@ public class GEMS_GUI
 					JTable clientTable = new JTable(clientData, clientHeader);
 					JScrollPane clientScroll = new JScrollPane(clientTable);
 					centerPanel.add(clientScroll, BorderLayout.CENTER);	
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 2;
 			}
 			catch(Exception e)
@@ -264,6 +270,8 @@ public class GEMS_GUI
 					JTable administratorTable = new JTable(administratorData, administratorHeader);
 					JScrollPane administratorScroll = new JScrollPane(administratorTable);
 					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 					intRefresh = 3;
 			}
 			catch(Exception e)
@@ -308,7 +316,9 @@ public class GEMS_GUI
 					Object[][] accountData = y.retrieveSelectedTableObject("AccountManager");
 					JTable accountTable = new JTable(accountData, accountHeader);
 					JScrollPane accountScroll = new JScrollPane(accountTable);
-					centerPanel.add(accountScroll, BorderLayout.CENTER);		
+					centerPanel.add(accountScroll, BorderLayout.CENTER);	
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 4;
 				
 			}
@@ -355,7 +365,9 @@ public class GEMS_GUI
 					Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
 					JTable supplierTable = new JTable(supplierData, supplierHeader);
 					JScrollPane supplierScroll = new JScrollPane(supplierTable);
-					centerPanel.add(supplierScroll, BorderLayout.CENTER);		
+					centerPanel.add(supplierScroll, BorderLayout.CENTER);	
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 5;
 
 			}
@@ -403,6 +415,8 @@ public class GEMS_GUI
 					JTable orderTable = new JTable(orderData, orderHeader);
 					JScrollPane orderScroll = new JScrollPane(orderTable);
 					centerPanel.add(orderScroll, BorderLayout.CENTER);	
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 6;
 
 			}
@@ -444,6 +458,8 @@ public class GEMS_GUI
 	                DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
 	                model.addRow(new Object[]{forename, surname, phoneNo});
 	                model.fireTableDataChanged();
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 	        }
 	        catch(Exception e)
@@ -484,6 +500,8 @@ public class GEMS_GUI
 	                DefaultTableModel model = (DefaultTableModel) accountManagerTable.getModel();
 	                model.addRow(new Object[]{forename, surname, phoneNo});
 	                model.fireTableDataChanged();
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -544,6 +562,8 @@ public class GEMS_GUI
 	                DefaultTableModel model = (DefaultTableModel) clientTable.getModel();
 	                model.addRow(new Object[]{companyName, address, accountManagerIDInt, forename, surname, email, phoneNo});
 	                model.fireTableDataChanged();
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -611,6 +631,8 @@ public class GEMS_GUI
 	                model.addRow(new Object[]{clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
 	                		quantityInt, supplierIDInt, deliveryAddress});
 	                model.fireTableDataChanged();
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -658,6 +680,8 @@ public class GEMS_GUI
 	                DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
 	                model.addRow(new Object[]{description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble});
 	                model.fireTableDataChanged();
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -712,6 +736,8 @@ public class GEMS_GUI
 	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
 	                model.addRow(new Object[]{companyName, address, forename, surname, email, phoneNo});
 	                model.fireTableDataChanged();
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -759,6 +785,8 @@ public class GEMS_GUI
 	                String tablePrimaryID = updateTablePrimaryID.getText();
 	                String whereValue = updateWhereValue.getText();
 	                y.updateEntry(table, attribute, newEntry, tablePrimaryID, whereValue);
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -795,6 +823,8 @@ public class GEMS_GUI
 	                String attribute = deleteAttribute.getText();
 	                String value = deleteValue.getText();
 	                y.deleteRow(table, attribute, value);
+	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
+					refreshButtonActionHandler.actionPerformed(event);
 	            }
 			}
 			catch(Exception e)
@@ -804,7 +834,7 @@ public class GEMS_GUI
 		}
 	}
 	//REFRESH Action Listener 
-	private class RefreshButtonActionHandler implements ActionListener
+	public class RefreshButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
