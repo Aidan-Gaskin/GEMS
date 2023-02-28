@@ -18,12 +18,12 @@ public class GEMS_GUI
 					private JMenuItem tbcItem4 = new JMenuItem("TBC");
 					
 		//Required Buttons
-		private JButton viewItems = new JButton("View: Items");
-		private JButton viewClients = new JButton("View: Clients");
-		private JButton viewAdministrators = new JButton("View: Administrators");
-		private JButton viewAccountManagers = new JButton("View: Account Managers");
-		private JButton viewSuppliers = new JButton("View: Suppliers");
-		private JButton viewOrders = new JButton("View: Orders");
+		private JButton viewItems = new JButton("View: Item");
+		private JButton viewClients = new JButton("View: Client");
+		private JButton viewAdministrators = new JButton("View: Administrator");
+		private JButton viewAccountManagers = new JButton("View: AccountManager");
+		private JButton viewSuppliers = new JButton("View: Supplier");
+		private JButton viewOrders = new JButton("View: Order");
 		
 		//Required Panels 
 		private JPanel westPanel = new JPanel();//add the buttons to
@@ -51,48 +51,47 @@ public class GEMS_GUI
 		
 		//Individual Database Tables 
 		//Item
-		private String[] itemHeader = {"Item ID","Description","Supplier ID","Buy Price","Sell Price"};
-		private Object[][] itemData = y.retrieveSelectedTableObject("item");
+		private String[] itemHeader = {"itemID","description","supplierID","buyPrice","sellPrice"};
+		private Object[][] itemData = y.retrieveSelectedTableObject("Item");
 		private JTable itemTable = new JTable(itemData, itemHeader);
 		private JScrollPane itemScroll = new JScrollPane(itemTable);
 		
 		//Client
-		private String[] clientHeader = {"Client ID","Company Name","Address","Account Manager ID","Contact Forename"
-				,"Contact Surname","Contact Email","Contact Phone No"};
-		private Object[][] clientData = y.retrieveSelectedTableObject("client");
+		private String[] clientHeader = {"clientID","companyName","address","accountManagerID","contactForename"
+				,"contactSurname","contactEmail","contactPhoneNo"};
+		private Object[][] clientData = y.retrieveSelectedTableObject("Client");
 		private JTable clientTable = new JTable(clientData, clientHeader);
 		private JScrollPane clientScroll = new JScrollPane(clientTable);
 		
 		//Account Manager
-		private String[] accountManagerHeader = {"Account Manager ID","Forename","Surname","Phone Number"};
+		private String[] accountManagerHeader = {"AccountManID","forename","surname","phoneNumber"};
 		private Object[][] accountManagerData = y.retrieveSelectedTableObject("AccountManager");
 		private JTable accountManagerTable = new JTable(accountManagerData, accountManagerHeader);
 		private JScrollPane accountManagerScroll = new JScrollPane(accountManagerTable);
 		
 		//Administrator
-		private String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
+		private String[] administratorHeader = {"adminID","forename","surname","phoneNo"};
 		private Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
 		private JTable administratorTable = new JTable(administratorData, administratorHeader);
 		private JScrollPane administratorScroll = new JScrollPane(administratorTable);
 		
 		//Order
-		private String[] orderHeader = {"Order ID","Client ID","Account Manager ID","Administrator ID",
-				"Item ID","Quantity","Supplier ID","Delivery Address"};
-		private Object[][] orderData = y.retrieveSelectedTableObject("order");
+		private String[] orderHeader = {"orderID","clientID","accountManID","adminID",
+				"itemID","quantity","supplierID","deliveryAddress"};
+		private Object[][] orderData = y.retrieveSelectedTableObject("Order");
 		private JTable orderTable = new JTable(orderData, orderHeader);
 		private JScrollPane orderScroll = new JScrollPane(orderTable);
 		
 		//Supplier
-		private String[] supplierHeader = {"Supplier ID","Company Name","Address","Contact Forename"
-				,"Contact Surname","Contact Email","Contact Phone Number"};
-		private Object[][] supplierData = y.retrieveSelectedTableObject("supplier");
+		private String[] supplierHeader = {"supplierID","companyName","address","contactForename"
+				,"contactSurname","contactEmail","contactPhoneNo"};
+		private Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
 		private JTable supplierTable = new JTable(supplierData, supplierHeader);
 		private JScrollPane supplierScroll = new JScrollPane(supplierTable);
+
+
 		
-		
-		
-		
-		//experimental int for refresh 
+		//intRefres - attached to the view handlers to allow manipulation on specific view page 
 		public int intRefresh;
 		
 		
@@ -236,8 +235,8 @@ public class GEMS_GUI
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				
 				//new additions below - @11:19
-				String[] itemHeader = {"Item ID","Description","Supplier ID","Buy Price",
-						"Sell Price"};
+				String[] itemHeader = {"itemID","description","supplierID","buyPrice",
+						"sellPrice"};
 				Object[][] itemData = y.retrieveSelectedTableObject("Item");
 				JTable itemTable = new JTable(itemData, itemHeader);
 				JScrollPane itemScroll = new JScrollPane(itemTable);
@@ -292,8 +291,8 @@ public class GEMS_GUI
 					refresh.addActionListener(new RefreshButtonActionHandler());
 
 					//new additions below - @11:19
-					String[] clientHeader = {"Client ID","Company Name","Address","Account Manager ID",
-							"Contact Forename", "Contact Surname", "Email", "Phone Number"};
+					String[] clientHeader = {"clientID","companyName","address","accountManagerID",
+							"contactForename", "contactSurname", "contactEmail", "contactPhoneNo"};
 					Object[][] clientData = y.retrieveSelectedTableObject("Client");
 					JTable clientTable = new JTable(clientData, clientHeader);
 					JScrollPane clientScroll = new JScrollPane(clientTable);
@@ -351,7 +350,7 @@ public class GEMS_GUI
 					
 					
 					//new additions below - @11:19
-					String[] administratorHeader = {"Administrator ID","Forename","Surname","Phone Number"};
+					String[] administratorHeader = {"adminID","forename","surname","phoneNo"};
 					Object[][] administratorData = y.retrieveSelectedTableObject("Administrator");
 					JTable administratorTable = new JTable(administratorData, administratorHeader);
 					JScrollPane administratorScroll = new JScrollPane(administratorTable);
@@ -404,7 +403,7 @@ public class GEMS_GUI
 					refresh.addActionListener(new RefreshButtonActionHandler());
 
 					//Views latest version of table 
-					String[] accountHeader = {"Account Manager ID","Forename","Surname","Phone Number"};
+					String[] accountHeader = {"accountManID","forename","surname","phoneNo"};
 					Object[][] accountData = y.retrieveSelectedTableObject("AccountManager");
 					JTable accountTable = new JTable(accountData, accountHeader);
 					JScrollPane accountScroll = new JScrollPane(accountTable);
@@ -460,8 +459,8 @@ public class GEMS_GUI
 					refresh.addActionListener(new RefreshButtonActionHandler());
 
 					//new additions below - @11:19
-					String[] supplierHeader = {"Supplier ID","Company Name","Address","Contact Forename",
-							"Contact Surname", "Email", "Phone Number"};
+					String[] supplierHeader = {"supplierID","companyName","address","contactForename",
+							"contactSurname", "contactEmail", "contactPhoneNo"};
 					Object[][] supplierData = y.retrieveSelectedTableObject("Supplier");
 					JTable supplierTable = new JTable(supplierData, supplierHeader);
 					JScrollPane supplierScroll = new JScrollPane(supplierTable);
@@ -519,8 +518,8 @@ public class GEMS_GUI
 					refresh.addActionListener(new RefreshButtonActionHandler());
 				
 					//new additions below - @11:19
-					String[] orderHeader = {"Order ID","Client ID","Account Manager ID","Admin ID",
-							"Item ID", "Quantity", "Supplier ID", "Delivery Address"};
+					String[] orderHeader = {"orderID","clientID","accountManID","adminID",
+							"itemID", "quantity", "supplierID", "deliveryAddress"};
 					Object[][] orderData = y.retrieveSelectedTableObject("Order");
 					JTable orderTable = new JTable(orderData, orderHeader);
 					JScrollPane orderScroll = new JScrollPane(orderTable);
@@ -902,11 +901,11 @@ public class GEMS_GUI
 	
 //Update Entry Frame 
 	private JOptionPane updateEntryPopUp = new JOptionPane("UPDATE ENTRY");
-	private JTextField updateTable = new JTextField("Table...");
-	private JTextField updateAttribute = new JTextField("Changing Field...");
-	private JTextField updateNewEntry = new JTextField("New Entry...");
-	private JTextField updateTablePrimaryID = new JTextField("Table Primary ID...");
-	private JTextField updateWhereValue = new JTextField("Where Value...");
+	private JTextField updateTable = new JTextField("Table to update...");
+	private JTextField updateAttribute = new JTextField("What field?");
+	private JTextField updateNewEntry = new JTextField("New Value...");
+	private JTextField updateTablePrimaryID = new JTextField("First field(table ID)...");
+	private JTextField updateWhereValue = new JTextField("First field value(table ID value)...");
 	//UPDATE Action Listener 
 	private class UpdateButtonActionHandler implements ActionListener
 	{
