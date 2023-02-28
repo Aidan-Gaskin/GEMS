@@ -923,6 +923,15 @@ public class GEMS_GUI
 			}
 		}
 	}
+	
+	
+	
+	//private JButton deleteEntry = new JButton("Delete Entry");
+	
+
+	
+	
+	
 	//DELETE Action Listener 
 	private class DeleteButtonActionHandler implements ActionListener
 	{
