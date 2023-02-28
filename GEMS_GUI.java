@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import gems.GEMS_GUI.RefreshButtonActionHandler;
 public class GEMS_GUI 
 {
 	//Main Frame 
@@ -175,8 +173,6 @@ public class GEMS_GUI
 				JTable itemTable = new JTable(itemData, itemHeader);
 				JScrollPane itemScroll = new JScrollPane(itemTable);
 				centerPanel.add(itemScroll, BorderLayout.CENTER);	
-                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
-				refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 1;
 			}
 			catch(Exception e)
@@ -223,8 +219,6 @@ public class GEMS_GUI
 					JTable clientTable = new JTable(clientData, clientHeader);
 					JScrollPane clientScroll = new JScrollPane(clientTable);
 					centerPanel.add(clientScroll, BorderLayout.CENTER);	
-	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
-					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 2;
 			}
 			catch(Exception e)
@@ -270,8 +264,6 @@ public class GEMS_GUI
 					JTable administratorTable = new JTable(administratorData, administratorHeader);
 					JScrollPane administratorScroll = new JScrollPane(administratorTable);
 					centerPanel.add(administratorScroll, BorderLayout.CENTER);	
-	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
-					refreshButtonActionHandler.actionPerformed(event);
 					intRefresh = 3;
 			}
 			catch(Exception e)
@@ -317,8 +309,6 @@ public class GEMS_GUI
 					JTable accountTable = new JTable(accountData, accountHeader);
 					JScrollPane accountScroll = new JScrollPane(accountTable);
 					centerPanel.add(accountScroll, BorderLayout.CENTER);	
-	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
-					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 4;
 				
 			}
@@ -366,8 +356,6 @@ public class GEMS_GUI
 					JTable supplierTable = new JTable(supplierData, supplierHeader);
 					JScrollPane supplierScroll = new JScrollPane(supplierTable);
 					centerPanel.add(supplierScroll, BorderLayout.CENTER);	
-	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
-					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 5;
 
 			}
@@ -415,8 +403,6 @@ public class GEMS_GUI
 					JTable orderTable = new JTable(orderData, orderHeader);
 					JScrollPane orderScroll = new JScrollPane(orderTable);
 					centerPanel.add(orderScroll, BorderLayout.CENTER);	
-	                RefreshButtonActionHandler refreshButtonActionHandler = new RefreshButtonActionHandler();
-					refreshButtonActionHandler.actionPerformed(event);
 				intRefresh = 6;
 
 			}
