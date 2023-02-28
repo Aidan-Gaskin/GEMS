@@ -53,10 +53,10 @@ public class GEMS_GUI
 		private JTextField updateWhereValue = new JTextField("Where Value...");
 		
 	//Delete Entry Frame
-		private JOptionPane deleteEntryPopUp = new JOptionPane("DELETE ENTRY");
-		private JTextField deleteTable = new JTextField("Table...");
-		private JTextField deleteAttribute = new JTextField("Attribute...");
-		private JTextField deleteValue = new JTextField("Value...");
+//		private JOptionPane deleteEntryPopUp = new JOptionPane("DELETE ENTRY");
+//		private JTextField deleteTable = new JTextField("Table...");
+//		private JTextField deleteAttribute = new JTextField("Attribute...");
+//		private JTextField deleteValue = new JTextField("Value...");
 	
 		//GEMS for Data Operations 
 		private GEMS y = new GEMS();
@@ -897,7 +897,57 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
+	//private JButton deleteEntry = new JButton("Delete Entry");
+	private JOptionPane deleteEntryPopUp = new JOptionPane("DELETE ENTRY");
+	private JTextField deleteTable = new JTextField("Table...");
+	private JTextField deleteAttribute = new JTextField("Attribute...");
+	private JTextField deleteValue = new JTextField("Value...");
+	//DELETE Action Listener 
+	private class DeleteButtonActionHandler implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			try
+			{
+				gems.add(deleteEntryPopUp);
+				
+				deleteEntryPopUp.setLayout(new GridLayout(3,1));
+				
+				deleteEntryPopUp.add(deleteTable);
+				deleteEntryPopUp.add(deleteAttribute);
+				deleteEntryPopUp.add(deleteValue);
+
+	            int result = JOptionPane.showConfirmDialog(null, deleteEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String table = deleteTable.getText();
+	                String attribute = deleteAttribute.getText();
+	                String value = deleteValue.getText();
+
+
+	                y.deleteRow(table, attribute, value);
+	                
+
+	                //Update the table model
+	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+	                model.addRow(new Object[]{table, attribute, value});
+	                model.fireTableDataChanged();
+	            }
+				
+				
+				
+				
+				y.deleteRow(null, null, null);
+				
+				
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();//change this after 
+			}
+		}
+	}
 	
 	
 	
@@ -926,27 +976,11 @@ public class GEMS_GUI
 	
 	
 	
-	//private JButton deleteEntry = new JButton("Delete Entry");
 	
 
 	
 	
-	
-	//DELETE Action Listener 
-	private class DeleteButtonActionHandler implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			try
-			{
-				
-			}
-			catch(Exception e)
-			{
-				
-			}
-		}
-	}
+
 	//REFRESH Action Listener 
 	private class RefreshButtonActionHandler implements ActionListener
 	{
