@@ -577,31 +577,71 @@ public class GEMS_GUI
 	private JTextField createAdminSurname = new JTextField();
 	private JLabel createAdminPhoneNoLabel = new JLabel("Phone Number:");
 	private JTextField createAdminPhoneNo = new JTextField();
+//	private class CreateAdministratorButtonActionHandler implements ActionListener
+//	{
+//	    public void actionPerformed(ActionEvent event)
+//	    {
+//	        try
+//	        {	   
+//	            gems.add(createAdminEntryPopUp);
+//
+//	            createAdminEntryPopUp.setLayout(new GridLayout(2,3));
+//
+//	            
+//	        	createAdminEntryPopUp.add(createAdminForenameLabel);
+//	        	createAdminEntryPopUp.add(createAdminSurnameLabel);
+//	        	createAdminEntryPopUp.add(createAdminPhoneNoLabel);
+//	        	
+//	            createAdminEntryPopUp.add(createAdminForename);
+//	            createAdminEntryPopUp.add(createAdminSurname);
+//	            createAdminEntryPopUp.add(createAdminPhoneNo);
+//	            
+//
+//
+//
+//
+//	            int result = JOptionPane.showConfirmDialog(null, createAdminEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+//
+//	            if(result == JOptionPane.OK_OPTION)
+//	            {
+//	                String forename = createAdminForename.getText();
+//	                String surname = createAdminSurname.getText();
+//	                String phoneNo = createAdminPhoneNo.getText();
+//
+//	                y.createAdministratorObject(forename, surname, phoneNo);
+//
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) administratorTable.getModel();
+//	                model.addRow(new Object[]{forename, surname, phoneNo});
+//	                model.fireTableDataChanged();
+//	            }
+//	        }
+//	        catch(Exception e)
+//	        {
+//	            e.printStackTrace();
+//	        }
+//
+//	    }
+//	}
 	private class CreateAdministratorButtonActionHandler implements ActionListener
 	{
 	    public void actionPerformed(ActionEvent event)
 	    {
 	        try
 	        {	   
-	            gems.add(createAdminEntryPopUp);
-
-	            createAdminEntryPopUp.setLayout(new GridLayout(2,3));
-
-	            
-	        	createAdminEntryPopUp.add(createAdminForenameLabel);
-	        	createAdminEntryPopUp.add(createAdminSurnameLabel);
-	        	createAdminEntryPopUp.add(createAdminPhoneNoLabel);
 	        	
-	            createAdminEntryPopUp.add(createAdminForename);
-	            createAdminEntryPopUp.add(createAdminSurname);
-	            createAdminEntryPopUp.add(createAdminPhoneNo);
-	            
+	            JPanel messagePanel = new JPanel();
+	            messagePanel.setLayout(new GridLayout(4, 2));
+	            messagePanel.add(createAdminForenameLabel);
+	            messagePanel.add(createAdminForename);
+	            messagePanel.add(createAdminSurnameLabel);
+	            messagePanel.add(createAdminSurname);
+	            messagePanel.add(createAdminPhoneNoLabel);
+	            messagePanel.add(createAdminPhoneNo);
 
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
-
-
-	            int result = JOptionPane.showConfirmDialog(null, createAdminEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-
+	        	
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String forename = createAdminForename.getText();
@@ -632,28 +672,67 @@ public class GEMS_GUI
 	private JTextField createAccountSurname = new JTextField();
 	private JLabel createAccountPhoneNoLabel = new JLabel("Phone Number:");
 	private JTextField createAccountPhoneNo = new JTextField();
+//	private class CreateAccountManagerButtonActionHandler implements ActionListener
+//	{
+//		public void actionPerformed(ActionEvent event)
+//		{
+//			try
+//			{
+//	            gems.add(createAccountEntryPopUp);
+//
+//	            createAccountEntryPopUp.setLayout(new GridLayout(2,3));
+//	            
+//	            createAccountEntryPopUp.add(createAccountForenameLabel);
+//	            createAccountEntryPopUp.add(createAccountSurnameLabel);
+//	            createAccountEntryPopUp.add(createAccountPhoneNoLabel);
+//
+//	            
+//
+//	            createAccountEntryPopUp.add(createAccountForename);
+//	            createAccountEntryPopUp.add(createAccountSurname);
+//	            createAccountEntryPopUp.add(createAccountPhoneNo);
+//
+//	            int result = JOptionPane.showConfirmDialog(null, createAccountEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+//
+//	            if(result == JOptionPane.OK_OPTION)
+//	            {
+//	                String forename = createAccountForename.getText();
+//	                String surname = createAccountSurname.getText();
+//	                String phoneNo = createAccountPhoneNo.getText();
+//
+//	                y.createAccountManagerObject(forename, surname, phoneNo);
+//
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) accountManagerTable.getModel();
+//	                model.addRow(new Object[]{forename, surname, phoneNo});
+//	                model.fireTableDataChanged();
+//	            }
+//			}
+//			catch(Exception e)
+//			{
+//				
+//			}
+//		}
+//	}
 	private class CreateAccountManagerButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-	            gems.add(createAccountEntryPopUp);
 
-	            createAccountEntryPopUp.setLayout(new GridLayout(2,3));
-	            
-	            createAccountEntryPopUp.add(createAccountForenameLabel);
-	            createAccountEntryPopUp.add(createAccountSurnameLabel);
-	            createAccountEntryPopUp.add(createAccountPhoneNoLabel);
+	            JPanel messagePanel = new JPanel();
+	            messagePanel.setLayout(new GridLayout(4, 2));
+	            messagePanel.add(createAccountForenameLabel);
+	            messagePanel.add(createAccountForename);
+	            messagePanel.add(createAccountSurnameLabel);
+	            messagePanel.add(createAccountSurname);
+	            messagePanel.add(createAccountPhoneNoLabel);
+	            messagePanel.add(createAccountPhoneNo);
 
-	            
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
-	            createAccountEntryPopUp.add(createAccountForename);
-	            createAccountEntryPopUp.add(createAccountSurname);
-	            createAccountEntryPopUp.add(createAccountPhoneNo);
-
-	            int result = JOptionPane.showConfirmDialog(null, createAccountEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-
+				
 	            if(result == JOptionPane.OK_OPTION)
 	            {
 	                String forename = createAccountForename.getText();
@@ -691,36 +770,92 @@ public class GEMS_GUI
 	private JTextField createClientEmail = new JTextField();
 	private JLabel createClientContactPhoneNoLabel = new JLabel("Contact Phone Number:");
 	private JTextField createClientPhoneNo = new JTextField();
+//	private class CreateClientButtonActionHandler implements ActionListener
+//	{
+//		public void actionPerformed(ActionEvent event)
+//		{
+//			try
+//			{
+//	            gems.add(createClientEntryPopUp);
+//
+//	            createClientEntryPopUp.setLayout(new GridLayout(2,3));
+//
+//	            createClientEntryPopUp.add(createClientCompanyNameLabel);
+//	            createClientEntryPopUp.add(createClientAddressLabel);
+//	            createClientEntryPopUp.add(createClientAccountManIDLabel);
+//	            createClientEntryPopUp.add(createClientContactForenameLabel);
+//	            createClientEntryPopUp.add(createClientContactSurnameLabel);
+//	            createClientEntryPopUp.add(createClientContactEmailLabel);
+//	            createClientEntryPopUp.add(createClientContactPhoneNoLabel);
+//
+//	            
+//	            createClientEntryPopUp.add(createClientCompanyName);
+//	            createClientEntryPopUp.add(createClientAddress);
+//	            createClientEntryPopUp.add(createClientAccountManID);
+//	            createClientEntryPopUp.add(createClientForename);
+//	            createClientEntryPopUp.add(createClientSurname);
+//	            createClientEntryPopUp.add(createClientEmail);
+//	            createClientEntryPopUp.add(createClientPhoneNo);
+//
+//
+//
+//	            int result = JOptionPane.showConfirmDialog(null, createClientEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+//
+//	            if(result == JOptionPane.OK_OPTION)
+//	            {
+//	            	String companyName = createClientCompanyName.getText();
+//	            	String address = createClientAddress.getText();
+//	            	String accountManagerID = createClientAccountManID.getText();//not sure if will work
+//	                String forename = createClientForename.getText();
+//	                String surname = createClientSurname.getText();
+//	                String email = createClientEmail.getText();
+//	                String phoneNo = createClientPhoneNo.getText();
+//	                
+//	                int accountManagerIDInt = Integer.parseInt(accountManagerID);
+//
+//
+//	                y.createClientObject(companyName,address,accountManagerIDInt,forename,surname,email,phoneNo);
+//
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) clientTable.getModel();
+//	                model.addRow(new Object[]{companyName, address, accountManagerIDInt, forename, surname, email, phoneNo});
+//	                model.fireTableDataChanged();
+//	            }
+//			}
+//			catch(Exception e)
+//			{
+//				
+//			}
+//		}
+//	}
 	private class CreateClientButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-	            gems.add(createClientEntryPopUp);
 
-	            createClientEntryPopUp.setLayout(new GridLayout(2,3));
-
-	            createClientEntryPopUp.add(createClientCompanyNameLabel);
-	            createClientEntryPopUp.add(createClientAddressLabel);
-	            createClientEntryPopUp.add(createClientAccountManIDLabel);
-	            createClientEntryPopUp.add(createClientContactForenameLabel);
-	            createClientEntryPopUp.add(createClientContactSurnameLabel);
-	            createClientEntryPopUp.add(createClientContactEmailLabel);
-	            createClientEntryPopUp.add(createClientContactPhoneNoLabel);
-
-	            
-	            createClientEntryPopUp.add(createClientCompanyName);
-	            createClientEntryPopUp.add(createClientAddress);
-	            createClientEntryPopUp.add(createClientAccountManID);
-	            createClientEntryPopUp.add(createClientForename);
-	            createClientEntryPopUp.add(createClientSurname);
-	            createClientEntryPopUp.add(createClientEmail);
-	            createClientEntryPopUp.add(createClientPhoneNo);
+	            JPanel messagePanel = new JPanel();
+	            messagePanel.setLayout(new GridLayout(4, 2));
+	            messagePanel.add(createClientCompanyNameLabel);
+	            messagePanel.add(createClientCompanyName);
+	            messagePanel.add(createClientAddressLabel);
+	            messagePanel.add(createClientAddress);
+	            messagePanel.add(createClientAccountManIDLabel);
+	            messagePanel.add(createClientAccountManID);
+	            messagePanel.add(createClientContactForenameLabel);
+	            messagePanel.add(createClientForename);
+	            messagePanel.add(createClientContactSurnameLabel);
+	            messagePanel.add(createClientSurname);
+	            messagePanel.add(createClientContactEmailLabel);
+	            messagePanel.add(createClientEmail);
+	            messagePanel.add(createClientContactPhoneNoLabel);
+	            messagePanel.add(createClientPhoneNo);
 
 
 
-	            int result = JOptionPane.showConfirmDialog(null, createClientEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -766,40 +901,104 @@ public class GEMS_GUI
 	private JTextField createOrderSupplierID = new JTextField();
 	private JLabel createOrderDeliveryAddressLabel = new JLabel("Delivery Address:");
 	private JTextField createOrderDeliveryAddress = new JTextField();
+//	private class CreateOrderButtonActionHandler implements ActionListener
+//	{
+//		public void actionPerformed(ActionEvent event)
+//		{
+//			try
+//			{
+//	            gems.add(createOrderEntryPopUp);
+//
+//	            createOrderEntryPopUp.setLayout(new GridLayout(2,3));
+//	            
+//	            createOrderEntryPopUp.add(createOrderClientIDLabel);
+//	            createOrderEntryPopUp.add(createOrderAccountManIDLabel);
+//	            createOrderEntryPopUp.add(createOrderAdminIDLabel);
+//	            createOrderEntryPopUp.add(createOrderItemIDLabel);
+//	            createOrderEntryPopUp.add(createOrderQuantityLabel);
+//	            createOrderEntryPopUp.add(createOrderSupplierIDLabel);
+//	            createOrderEntryPopUp.add(createOrderDeliveryAddressLabel);
+//
+//
+//
+//
+//	            createOrderEntryPopUp.add(createOrderClientID);
+//	            createOrderEntryPopUp.add(createOrderAccountManID);
+//	            createOrderEntryPopUp.add(createOrderAdminID);
+//	            createOrderEntryPopUp.add(createOrderItemID);
+//	            createOrderEntryPopUp.add(createOrderQuantity);
+//	            createOrderEntryPopUp.add(createOrderSupplierID);
+//	            createOrderEntryPopUp.add(createOrderDeliveryAddress);
+//
+//
+//
+//	            int result = JOptionPane.showConfirmDialog(null, createOrderEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+//
+//                System.out.println("HEREHERHERHERHERHEHREHREHREHRE");
+//
+//	            if(result == JOptionPane.OK_OPTION)
+//	            {
+//	                String clientID = createOrderClientID.getText();
+//	                String accountManID = createOrderAccountManID.getText();
+//	                String adminID = createOrderAdminID.getText();
+//	                String itemID = createOrderItemID.getText();
+//	                String quantity = createOrderQuantity.getText();
+//	                String supplierID = createOrderSupplierID.getText();
+//	                String deliveryAddress = createOrderDeliveryAddress.getText();
+//
+//	                int clientIDInt = Integer.parseInt(clientID);
+//	                int accountManIDInt = Integer.parseInt(accountManID);
+//	                int adminIDInt = Integer.parseInt(adminID);
+//	                int itemIDInt = Integer.parseInt(itemID);
+//	                int quantityInt = Integer.parseInt(quantity);
+//	                int supplierIDInt = Integer.parseInt(supplierID);
+//
+//
+//
+//
+//	                y.createOrderObject(clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
+//	                		quantityInt, supplierIDInt, deliveryAddress);
+//
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
+//	                model.addRow(new Object[]{clientIDInt, accountManIDInt, adminIDInt, itemIDInt, 
+//	                		quantityInt, supplierIDInt, deliveryAddress});
+//	                model.fireTableDataChanged();
+//	            }
+//			}
+//			catch(Exception e)
+//			{
+//				
+//			}
+//		}
+//	}
 	private class CreateOrderButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-	            gems.add(createOrderEntryPopUp);
+	            JPanel messagePanel = new JPanel();
+	            messagePanel.setLayout(new GridLayout(4, 2));
+	            messagePanel.add(createOrderClientIDLabel);
+	            messagePanel.add(createOrderClientID);
+	            messagePanel.add(createOrderAccountManIDLabel);
+	            messagePanel.add(createOrderAccountManID);
+	            messagePanel.add(createOrderAdminIDLabel);
+	            messagePanel.add(createOrderAdminID);
+	            messagePanel.add(createOrderItemIDLabel);
+	            messagePanel.add(createOrderItemID);
+	            messagePanel.add(createOrderQuantityLabel);
+	            messagePanel.add(createOrderQuantity);
+	            messagePanel.add(createOrderSupplierIDLabel);
+	            messagePanel.add(createOrderSupplierID);
+	            messagePanel.add(createOrderDeliveryAddressLabel);
+	            messagePanel.add(createOrderDeliveryAddress);
 
-	            createOrderEntryPopUp.setLayout(new GridLayout(2,3));
+
 	            
-	            createOrderEntryPopUp.add(createOrderClientIDLabel);
-	            createOrderEntryPopUp.add(createOrderAccountManIDLabel);
-	            createOrderEntryPopUp.add(createOrderAdminIDLabel);
-	            createOrderEntryPopUp.add(createOrderItemIDLabel);
-	            createOrderEntryPopUp.add(createOrderQuantityLabel);
-	            createOrderEntryPopUp.add(createOrderSupplierIDLabel);
-	            createOrderEntryPopUp.add(createOrderDeliveryAddressLabel);
 
-
-
-
-	            createOrderEntryPopUp.add(createOrderClientID);
-	            createOrderEntryPopUp.add(createOrderAccountManID);
-	            createOrderEntryPopUp.add(createOrderAdminID);
-	            createOrderEntryPopUp.add(createOrderItemID);
-	            createOrderEntryPopUp.add(createOrderQuantity);
-	            createOrderEntryPopUp.add(createOrderSupplierID);
-	            createOrderEntryPopUp.add(createOrderDeliveryAddress);
-
-
-
-	            int result = JOptionPane.showConfirmDialog(null, createOrderEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
-
-                System.out.println("HEREHERHERHERHERHEHREHREHREHRE");
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -848,28 +1047,73 @@ public class GEMS_GUI
 	private JTextField createItemBuyPrice = new JTextField();
 	private JLabel createItemSellPriceLabel = new JLabel("Sell Price:");
 	private JTextField createItemSellPrice = new JTextField();
+//	private class CreateItemButtonActionHandler implements ActionListener
+//	{
+//		public void actionPerformed(ActionEvent event)
+//		{
+//			try
+//			{
+//	            gems.add(createItemEntryPopUp);
+//
+//	            createItemEntryPopUp.setLayout(new GridLayout(2,3));
+//	            
+//	            createItemEntryPopUp.add(createItemDescriptionLabel);
+//	            createItemEntryPopUp.add(createItemSupplierIDLabel);
+//	            createItemEntryPopUp.add(createItemBuyPriceLabel);
+//	            createItemEntryPopUp.add(createItemSellPriceLabel);
+//
+//	            createItemEntryPopUp.add(createItemDescription);
+//	            createItemEntryPopUp.add(createItemSupplierID);
+//	            createItemEntryPopUp.add(createItemBuyPrice);
+//	            createItemEntryPopUp.add(createItemSellPrice);
+//
+//
+//	            int result = JOptionPane.showConfirmDialog(null, createItemEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+//
+//	            if(result == JOptionPane.OK_OPTION)
+//	            {
+//	                String description = createItemDescription.getText();
+//	                String supplierID = createItemSupplierID.getText();
+//	                String buyPrice = createItemBuyPrice.getText();
+//	                String sellPrice = createItemSellPrice.getText();
+//	                
+//	                int itemSupplierIDInt = Integer.parseInt(supplierID);
+//	                double buyPriceDouble = Double.parseDouble(buyPrice);
+//	                double sellPriceDouble = Double.parseDouble(sellPrice);
+//
+//
+//	                y.createItemObject(description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble);
+//
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
+//	                model.addRow(new Object[]{description, itemSupplierIDInt, buyPriceDouble, sellPriceDouble});
+//	                model.fireTableDataChanged();
+//	            }
+//			}
+//			catch(Exception e)
+//			{
+//				
+//			}
+//		}
+//	}
 	private class CreateItemButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-	            gems.add(createItemEntryPopUp);
+	            JPanel messagePanel = new JPanel();
+	            messagePanel.setLayout(new GridLayout(4, 2));
+	            messagePanel.add(createItemDescriptionLabel);
+	            messagePanel.add(createItemDescription);
+	            messagePanel.add(createItemSupplierIDLabel);
+	            messagePanel.add(createItemSupplierID);
+	            messagePanel.add(createItemBuyPriceLabel);
+	            messagePanel.add(createItemBuyPrice);
+	            messagePanel.add(createItemSellPriceLabel);
+	            messagePanel.add(createItemSellPrice);
 
-	            createItemEntryPopUp.setLayout(new GridLayout(2,3));
-	            
-	            createItemEntryPopUp.add(createItemDescriptionLabel);
-	            createItemEntryPopUp.add(createItemSupplierIDLabel);
-	            createItemEntryPopUp.add(createItemBuyPriceLabel);
-	            createItemEntryPopUp.add(createItemSellPriceLabel);
-
-	            createItemEntryPopUp.add(createItemDescription);
-	            createItemEntryPopUp.add(createItemSupplierID);
-	            createItemEntryPopUp.add(createItemBuyPrice);
-	            createItemEntryPopUp.add(createItemSellPrice);
-
-
-	            int result = JOptionPane.showConfirmDialog(null, createItemEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+	            int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -897,7 +1141,7 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
+
 	//Create Entry SUPPLIER
 	private JOptionPane createSupplierEntryPopUp = new JOptionPane("CREATE SUPPLIER ENTRY");
 	private JTextField createSupplierCompanyName = new JTextField();
@@ -912,34 +1156,81 @@ public class GEMS_GUI
 	private JLabel createSupplierEmailLabel = new JLabel("Email: ");
 	private JTextField createSupplierPhoneNo = new JTextField();
 	private JLabel createSupplierPhoneNoLabel = new JLabel("Phone Number: ");
+//	private class CreateSupplierButtonActionHandler implements ActionListener
+//	{
+//		public void actionPerformed(ActionEvent event)
+//		{
+//			try
+//			{
+//	            gems.add(createSupplierEntryPopUp);
+//
+//	            createSupplierEntryPopUp.setLayout(new GridLayout(2,3));
+//	            
+//	            createSupplierEntryPopUp.add(createSupplierCompanyNameLabel);
+//	            createSupplierEntryPopUp.add(createSupplierAddressLabel);
+//	            createSupplierEntryPopUp.add(createSupplierForenameLabel);
+//	            createSupplierEntryPopUp.add(createSupplierSurnameLabel);
+//	            createSupplierEntryPopUp.add(createSupplierEmailLabel);
+//	            createSupplierEntryPopUp.add(createSupplierPhoneNoLabel);
+//
+//	            createSupplierEntryPopUp.add(createSupplierCompanyName);
+//	            createSupplierEntryPopUp.add(createSupplierAddress);
+//	            createSupplierEntryPopUp.add(createSupplierForename);
+//	            createSupplierEntryPopUp.add(createSupplierSurname);
+//	            createSupplierEntryPopUp.add(createSupplierEmail);
+//	            createSupplierEntryPopUp.add(createSupplierPhoneNo);
+//
+//
+//
+//
+//	            int result = JOptionPane.showConfirmDialog(null, createSupplierEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+//
+//	            if(result == JOptionPane.OK_OPTION)
+//	            {
+//	                String companyName = createSupplierCompanyName.getText();
+//	                String address = createSupplierAddress.getText();
+//	                String forename = createSupplierForename.getText();
+//	                String surname = createSupplierSurname.getText();
+//	                String email = createSupplierEmail.getText();
+//	                String phoneNo = createSupplierPhoneNo.getText();
+//
+//	                y.createSupplierObject(companyName, address, forename, surname, email, phoneNo);
+//
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+//	                model.addRow(new Object[]{companyName, address, forename, surname, email, phoneNo});
+//	                model.fireTableDataChanged();
+//	            }
+//			}
+//			catch(Exception e)
+//			{
+//				
+//			}
+//		}
+//	}
 	private class CreateSupplierButtonActionHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
 			try
 			{
-	            gems.add(createSupplierEntryPopUp);
 
-	            createSupplierEntryPopUp.setLayout(new GridLayout(2,3));
-	            
-	            createSupplierEntryPopUp.add(createSupplierCompanyNameLabel);
-	            createSupplierEntryPopUp.add(createSupplierAddressLabel);
-	            createSupplierEntryPopUp.add(createSupplierForenameLabel);
-	            createSupplierEntryPopUp.add(createSupplierSurnameLabel);
-	            createSupplierEntryPopUp.add(createSupplierEmailLabel);
-	            createSupplierEntryPopUp.add(createSupplierPhoneNoLabel);
+				JPanel messagePanel = new JPanel();
+				messagePanel.setLayout(new GridLayout(6, 2));
+				messagePanel.add(createSupplierCompanyNameLabel);
+				messagePanel.add(createSupplierCompanyName);
+				messagePanel.add(createSupplierAddressLabel);
+				messagePanel.add(createSupplierAddress);
+				messagePanel.add(createSupplierForenameLabel);
+				messagePanel.add(createSupplierForename);
+				messagePanel.add(createSupplierSurnameLabel);
+				messagePanel.add(createSupplierSurname);
+				messagePanel.add(createSupplierEmailLabel);
+				messagePanel.add(createSupplierEmail);
+				messagePanel.add(createSupplierPhoneNoLabel);
+				messagePanel.add(createSupplierPhoneNo);
 
-	            createSupplierEntryPopUp.add(createSupplierCompanyName);
-	            createSupplierEntryPopUp.add(createSupplierAddress);
-	            createSupplierEntryPopUp.add(createSupplierForename);
-	            createSupplierEntryPopUp.add(createSupplierSurname);
-	            createSupplierEntryPopUp.add(createSupplierEmail);
-	            createSupplierEntryPopUp.add(createSupplierPhoneNo);
-
-
-
-
-	            int result = JOptionPane.showConfirmDialog(null, createSupplierEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, messagePanel, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
 
 	            if(result == JOptionPane.OK_OPTION)
 	            {
@@ -964,8 +1255,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
 	
 	
 
