@@ -43,20 +43,6 @@ public class GEMS_GUI
 		private JButton deleteEntry = new JButton("Delete Entry");
 		private JButton refresh = new JButton("Refresh");
 		
-		
-	//Update Entry Frame 
-		private JOptionPane updateEntryPopUp = new JOptionPane("UPDATE ENTRY");
-		private JTextField updateTable = new JTextField("Table...");
-		private JTextField updateAttribute = new JTextField("Changing Field...");
-		private JTextField updateNewEntry = new JTextField("New Entry...");
-		private JTextField updateTablePrimaryID = new JTextField("Table Primary ID...");
-		private JTextField updateWhereValue = new JTextField("Where Value...");
-		
-	//Delete Entry Frame
-//		private JOptionPane deleteEntryPopUp = new JOptionPane("DELETE ENTRY");
-//		private JTextField deleteTable = new JTextField("Table...");
-//		private JTextField deleteAttribute = new JTextField("Attribute...");
-//		private JTextField deleteValue = new JTextField("Value...");
 	
 		//GEMS for Data Operations 
 		private GEMS y = new GEMS();
@@ -897,7 +883,76 @@ public class GEMS_GUI
 			}
 		}
 	}
-	//private JButton deleteEntry = new JButton("Delete Entry");
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//private JButton refresh = new JButton("Refresh");
+	
+	
+//Update Entry Frame 
+	private JOptionPane updateEntryPopUp = new JOptionPane("UPDATE ENTRY");
+	private JTextField updateTable = new JTextField("Table...");
+	private JTextField updateAttribute = new JTextField("Changing Field...");
+	private JTextField updateNewEntry = new JTextField("New Entry...");
+	private JTextField updateTablePrimaryID = new JTextField("Table Primary ID...");
+	private JTextField updateWhereValue = new JTextField("Where Value...");
+	//UPDATE Action Listener 
+	private class UpdateButtonActionHandler implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			try
+			{
+				gems.add(updateEntryPopUp);
+				
+				updateEntryPopUp.add(updateTable);
+				updateEntryPopUp.add(updateAttribute);
+				updateEntryPopUp.add(updateNewEntry);
+				updateEntryPopUp.add(updateTablePrimaryID);
+				updateEntryPopUp.add(updateWhereValue);
+
+	            int result = JOptionPane.showConfirmDialog(null, updateEntryPopUp, "Enter Values", JOptionPane.OK_CANCEL_OPTION);
+
+	            if(result == JOptionPane.OK_OPTION)
+	            {
+	                String table = updateTable.getText();
+	                String attribute = updateAttribute.getText();
+	                String newEntry = updateNewEntry.getText();
+	                String tablePrimaryID = updateTablePrimaryID.getText();
+	                String whereValue = updateWhereValue.getText();
+
+
+
+
+	                y.updateEntry(table, attribute, newEntry, tablePrimaryID, whereValue);
+	                
+	                
+	                
+	                //HAS SUPPLIER TABLE?
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+//	                model.addRow(new Object[]{table, attribute, newEntry, tablePrimaryID, whereValue});
+//	                model.fireTableDataChanged();
+	            }
+	            
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+	}
 	private JOptionPane deleteEntryPopUp = new JOptionPane("DELETE ENTRY");
 	private JTextField deleteTable = new JTextField("Table...");
 	private JTextField deleteAttribute = new JTextField("Attribute...");
@@ -925,22 +980,16 @@ public class GEMS_GUI
 	                String attribute = deleteAttribute.getText();
 	                String value = deleteValue.getText();
 
-
 	                y.deleteRow(table, attribute, value);
 	                
-
-	                //Update the table model
-	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
-	                model.addRow(new Object[]{table, attribute, value});
-	                model.fireTableDataChanged();
+	                
+	                
+	                //HAS SUPPLIER TABLE???
+//	                //Update the table model
+//	                DefaultTableModel model = (DefaultTableModel) supplierTable.getModel();
+//	                model.addRow(new Object[]{table, attribute, value});
+//	                model.fireTableDataChanged();
 	            }
-				
-				
-				
-				
-				y.deleteRow(null, null, null);
-				
-				
 			}
 			catch(Exception e)
 			{
@@ -948,39 +997,6 @@ public class GEMS_GUI
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//UPDATE Action Listener 
-	private class UpdateButtonActionHandler implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			try
-			{
-				
-			}
-			catch(Exception e)
-			{
-				
-			}
-		}
-	}
-	
-	
-	
-	
-
-	
-	
-
 	//REFRESH Action Listener 
 	private class RefreshButtonActionHandler implements ActionListener
 	{
@@ -988,7 +1004,6 @@ public class GEMS_GUI
 		{
 			try
 			{
-				
 				switch(intRefresh)
 				{
 				//*****ITEM*****
