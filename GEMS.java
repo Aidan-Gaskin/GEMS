@@ -212,6 +212,7 @@ public class GEMS
     		//e.printStackTrace();
     	}
     } 
+    //****************************RETIEVE METHOD HERE**********************************
     public Object[][] retrieveSelectedTableObject(String s) 
     {
         try 
